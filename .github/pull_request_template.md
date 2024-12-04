@@ -3,7 +3,7 @@ name: Pull request
 about: Describe the pull request's purpose here
 title: ''
 labels: pull
-assignees: xepersian
+assignees: vkhalighi
 
 ---
 
