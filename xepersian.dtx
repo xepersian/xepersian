@@ -5,7 +5,7 @@
 %<*readme>
 ____________________
 The XePersian package
-v25.1
+v25.2
 
 The xepersian package provides a convenient interface for 
 typesetting Persian and English texts in LaTeX, using XeTeX 
@@ -31,7 +31,7 @@ also appear in the Discussions space under the Announcements
 category.
   
   
-Current version release date: 2024/12/07
+Current version release date: 2024/12/10
 ___________________________________________
 Vafa Khalighi
 
@@ -168,7 +168,7 @@ by Vafa Khalighi.
 \documentclass{ltxdoc}
 \input{xepersian-doc-preamble.ltx}
 \hypersetup{%
-  pdftitle={Source documentation for version 25.1 of the XePersian
+  pdftitle={Source documentation for version 25.2 of the XePersian
                 package}%
 }
 \EnableCrossrefs
@@ -187,7 +187,7 @@ by Vafa Khalighi.
 % \GetFileInfo{\jobname.dtx}
 % \title{\textcolor{xepersianblue}{\Huge The \textsf{\XePersian} \textit{Package}}\\
 %\LARGE Persian for \LaTeXe, using {\XeTeX} engine\\[5pt]
-%\large Source documentation for \textcolor{xepersianblue}{version 25.1}}
+%\large Source documentation for \textcolor{xepersianblue}{version 25.2}}
 % \author{Vafa Khalighi\thanks{Thanks to the bidi-tex GitHub organization consisted of David Carlisle and other members of the  {\LaTeX} team for maintaining the package in the period 2018--2020.}}
 %\setcounter{page}{0}
 %\thispagestyle{empty}
@@ -197,7 +197,7 @@ by Vafa Khalighi.
 %\textcolor{xepersianblue}{\Huge The \textsf{\XePersian} \textit{Package}}
 %
 %\Large
-%Source documentation for \textcolor{xepersianblue}{version 25.1}}
+%Source documentation for \textcolor{xepersianblue}{version 25.2}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -3592,17 +3592,13 @@ U+003E U+003E <> U+00BB ; >> -> RIGHT POINTING GUILLEMET
 % \section{File \texttt{xepersian.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\xepersian@version{25.1}
-\def\xepersiandate{2024/12/07}
+\def\xepersian@version{25.2}
+\def\xepersiandate{2024/12/10}
 \def\xepersian@releasename{JahanPahlevan Rostam Dastan}
 \def\xepersian@persian@@releasename{جهان‌پهلوان رستم دستان}
 \newcommand*{\xepersianreleasename}{\if@RTL\xepersian@persian@@releasename\else\xepersian@releasename\fi}
 \ProvidesPackage{xepersian}[\xepersiandate\space v\xepersian@version\space (Release \xepersian@releasename)\space
 Persian typesetting in XeLaTeX]
-\RequirePackage{fontspec}
-\RequirePackage{xepersian-persiancal}
-\RequirePackage{xepersian-mathdigitspec}
-\RequirePackage{bidi}
 \edef\@xepersian@info{****************************************************^^J%
 * ^^J%
 * xepersian package (Persian for LaTeX, using XeTeX engine)^^J%
@@ -3631,6 +3627,10 @@ Persian typesetting in XeLaTeX]
 \typeout{\@xepersian@info}
 \edef\xepersian@everyjob{\the\everyjob}
 \everyjob{\xepersian@everyjob\typeout{\@xepersian@info}}
+\RequirePackage{fontspec}
+\RequirePackage{xepersian-persiancal}
+\RequirePackage{xepersian-mathdigitspec}
+\RequirePackage{bidi}
 \newcommand*{\xepersianversion}
   {\ensuremath\xepersian@version}
 \newcommand*{\IfxepersianPackageVersionLater}[1]{%
@@ -4445,7 +4445,7 @@ Persian typesetting in XeLaTeX]
 
 \newcommand*{\@xepersian@pdfcustomproperties}{%
   This is the xepersian package, Version \xepersian@version\space (Release \xepersian@releasename),
-  Released December 7, 2024. 
+  Released December 10, 2024. 
 }
 
 \newcommand\twocolumnstableofcontents{%
