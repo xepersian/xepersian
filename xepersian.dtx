@@ -31,7 +31,7 @@ also appear in the Discussions space under the Announcements
 category.
   
   
-Current version release date: 2024/12/14
+Current version release date: 2024/12/15
 ___________________________________________
 Vafa Khalighi
 
@@ -245,7 +245,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{10990}
+%% \CheckSum{0}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -3593,7 +3593,7 @@ U+003E U+003E <> U+00BB ; >> -> RIGHT POINTING GUILLEMET
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
 \def\xepersian@version{25.3}
-\def\xepersiandate{2024/12/14}
+\def\xepersiandate{2024/12/15}
 \def\xepersian@releasename{Mount Damavand}
 \def\xepersian@persian@@releasename{دماوند}
 \newcommand*{\xepersianreleasename}{\if@RTL\xepersian@persian@@releasename\else\xepersian@releasename\fi}
@@ -3658,53 +3658,53 @@ Persian typesetting in XeLaTeX]
       \ifwritexviii
         \@ifclassloaded{memoir}{%
           \PackageError{xepersian}{%
-            This  feature does not yet work with the memoir class}{}%
+            This~feature~does~not~yet~work~with~the~memoir~class}{}%
         }{%
           \renewcommand\printindex{\newpage%
             \immediate\closeout\@indexfile
             \immediate\write18{%
-              xindy -L persian-variant1 -C utf8 -M texindy -M page-ranges \jobname.idx}
+              xindy~-L~persian-variant1~-C~utf8~-M~texindy~-M~page-ranges~\jobname.idx}
                \@input@{\jobname.ind}}%
         }
       \else
         \PackageError{xepersian}{%
-          “shell escape” (or “write18”) is not enabled. You need to run “xelatex --shell-escape” on your TeX document for this feature to work}{}
+          “shell~escape”~(or~“write18”)~is~not~enabled.~You~need~to~run~“xelatex~--shell-escape”~on~your~TeX~document~for~this~feature~to~work}{}
       \fi
     } ,
     quickindex-variant / two .code:n = \AtEndOfPackage{%
       \ifwritexviii
         \@ifclassloaded{memoir}{%
           \PackageError{xepersian}{%
-            This  feature does not yet work with the memoir class}{}%
+            This~feature~does~not~yet~work~with~the~memoir~class}{}%
         }{%
           \renewcommand\printindex{\newpage%
             \immediate\closeout\@indexfile
             \immediate\write18{%
-              xindy -L persian-variant2 -C utf8 -M texindy -M page-ranges \jobname.idx}
+              xindy~-L~persian-variant2~-C~utf8~-M~texindy~-M~page-ranges~\jobname.idx}
                \@input@{\jobname.ind}}%
         }
       \else
         \PackageError{xepersian}{%
-          “shell escape” (or “write18”) is not enabled. You need to run “xelatex --shell-escape” on your TeX document for this feature to work}{}
+          “shell~escape”~(or~“write18”)~is~not~enabled.~You~need~to~run~“xelatex~--shell-escape”~on~your~TeX~document~for~this~feature~to~work}{}
       \fi
-    } , 
+    } ,
     quickindex-variant / three .code:n = \AtEndOfPackage{%
       \ifwritexviii
         \@ifclassloaded{memoir}{%
           \PackageError{xepersian}{%
-            This  feature does not yet work with the memoir class}{}%
+            This~feature~does~not~yet~work~with~the~memoir~class}{}%
         }{%
           \renewcommand\printindex{\newpage%
             \immediate\closeout\@indexfile
             \immediate\write18{%
-              xindy -L persian-variant3 -C utf8 -M texindy -M page-ranges \jobname.idx}
+              xindy~-L~persian-variant3~-C~utf8~-M~texindy~-M~page-ranges~\jobname.idx}
                \@input@{\jobname.ind}}%
         }
       \else
         \PackageError{xepersian}{%
-          “shell escape” (or “write18”) is not enabled. You need to run “xelatex --shell-escape” on your TeX document for this feature to work}{}
+          “shell~escape”~(or~“write18”)~is~not~enabled.~You~need~to~run~“xelatex~--shell-escape”~on~your~TeX~document~for~this~feature~to~work}{}
       \fi
-    } 
+    } ,
   }
 \keys_define:nn { xepersian }
   {
