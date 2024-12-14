@@ -5,7 +5,7 @@
 %<*readme>
 ____________________
 The XePersian package
-v25.2
+v25.3
 
 The xepersian package provides a convenient interface for 
 typesetting Persian and English texts in LaTeX, using XeTeX 
@@ -31,7 +31,7 @@ also appear in the Discussions space under the Announcements
 category.
   
   
-Current version release date: 2024/12/10
+Current version release date: 2024/12/14
 ___________________________________________
 Vafa Khalighi
 
@@ -168,7 +168,7 @@ by Vafa Khalighi.
 \documentclass{ltxdoc}
 \input{xepersian-doc-preamble.ltx}
 \hypersetup{%
-  pdftitle={Source documentation for version 25.2 of the XePersian
+  pdftitle={Source documentation for version 25.3 of the XePersian
                 package}%
 }
 \EnableCrossrefs
@@ -187,7 +187,7 @@ by Vafa Khalighi.
 % \GetFileInfo{\jobname.dtx}
 % \title{\textcolor{xepersianblue}{\Huge The \textsf{\XePersian} \textit{Package}}\\
 %\LARGE Persian for \LaTeXe, using {\XeTeX} engine\\[5pt]
-%\large Source documentation for \textcolor{xepersianblue}{version 25.2}}
+%\large Source documentation for \textcolor{xepersianblue}{version 25.3}}
 % \author{Vafa Khalighi\thanks{Thanks to the bidi-tex GitHub organization consisted of David Carlisle and other members of the  {\LaTeX} team for maintaining the package in the period 2018--2020.}}
 %\setcounter{page}{0}
 %\thispagestyle{empty}
@@ -197,7 +197,7 @@ by Vafa Khalighi.
 %\textcolor{xepersianblue}{\Huge The \textsf{\XePersian} \textit{Package}}
 %
 %\Large
-%Source documentation for \textcolor{xepersianblue}{version 25.2}}
+%Source documentation for \textcolor{xepersianblue}{version 25.3}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -245,7 +245,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{11192}
+%% \CheckSum{10990}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -3592,13 +3592,194 @@ U+003E U+003E <> U+00BB ; >> -> RIGHT POINTING GUILLEMET
 % \section{File \texttt{xepersian.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\xepersian@version{25.2}
-\def\xepersiandate{2024/12/10}
-\def\xepersian@releasename{JahanPahlevan Rostam Dastan}
-\def\xepersian@persian@@releasename{جهان‌پهلوان رستم دستان}
+\def\xepersian@version{25.3}
+\def\xepersiandate{2024/12/14}
+\def\xepersian@releasename{Mount Damavand}
+\def\xepersian@persian@@releasename{دماوند}
 \newcommand*{\xepersianreleasename}{\if@RTL\xepersian@persian@@releasename\else\xepersian@releasename\fi}
 \ProvidesPackage{xepersian}[\xepersiandate\space v\xepersian@version\space (Release \xepersian@releasename)\space
 Persian typesetting in XeLaTeX]
+\newif\if@xepersian@banner
+\newif\if@xepersian@@computeautoilg  
+\DeclareUnknownKeyHandler{%
+  \PassOptionsToPackage{\CurrentOption}{bidi}%
+}
+\ExplSyntaxOn
+\keys_define:nn { xepersian }
+  {
+    banner .choice: ,
+    banner / on .code:n = 
+      \@xepersian@bannertrue
+      \PassOptionsToPackage{banner=on}{bidi} ,
+    banner / off .code:n = 
+      \@xepersian@bannerfalse
+      \PassOptionsToPackage{banner=off}{bidi} ,
+    banner .default:n = on
+  }
+\keys_define:nn { xepersian }
+  {
+    mathdigits .choice: ,
+    mathdigits / automatic .code:n = \AtEndOfPackage{\AutoMathDigits} ,
+    mathdigits / default .code:n = \AtEndOfPackage{\DefaultMathDigits} ,
+    mathdigits / persian .code:n = \AtEndOfPackage{\PersianMathDigits}
+  }
+\keys_define:nn { xepersian }
+  {
+    inlinemathdigits .choice: ,
+    inlinemathdigits / automatic .code:n = \AtEndOfPackage{\AutoInlineMathDigits} ,
+    inlinemathdigits / default .code:n = \AtEndOfPackage{\DefaultInlineMathDigits} ,
+    inlinemathdigits / persian .code:n = \AtEndOfPackage{\PersianInlineMathDigits}
+  }
+\keys_define:nn { xepersian }
+  {
+    displaymathdigits .choice: ,
+    displaymathdigits / automatic .code:n = \AtEndOfPackage{\AutoDisplayMathDigits} ,
+    displaymathdigits / default .code:n = \AtEndOfPackage{\DefaultDisplayMathDigits} ,
+    displaymathdigits / persian .code:n = \AtEndOfPackage{\PersianDisplayMathDigits}
+  }
+\keys_define:nn { xepersian }
+  {
+    Kashida .choice: ,
+    Kashida / on .code:n = \AtEndOfPackage{\input{kashida-xepersian.def}} ,
+    Kashida / off .code:n = \relax ,
+    Kashida .default:n = on
+  }
+\keys_define:nn { xepersian }
+  {
+    localise .choice: ,
+    localise / on .code:n = \AtEndOfPackage{\input{localise-xepersian.def}} ,
+    localise / off .code:n = \relax ,
+    localise .default:n = on
+  }
+\keys_define:nn { xepersian }
+  {
+    quickindex-variant .choice: ,
+    quickindex-variant / one .code:n = \AtEndOfPackage{%
+      \ifwritexviii
+        \@ifclassloaded{memoir}{%
+          \PackageError{xepersian}{%
+            This  feature does not yet work with the memoir class}{}%
+        }{%
+          \renewcommand\printindex{\newpage%
+            \immediate\closeout\@indexfile
+            \immediate\write18{%
+              xindy -L persian-variant1 -C utf8 -M texindy -M page-ranges \jobname.idx}
+               \@input@{\jobname.ind}}%
+        }
+      \else
+        \PackageError{xepersian}{%
+          “shell escape” (or “write18”) is not enabled. You need to run “xelatex --shell-escape” on your TeX document for this feature to work}{}
+      \fi
+    } ,
+    quickindex-variant / two .code:n = \AtEndOfPackage{%
+      \ifwritexviii
+        \@ifclassloaded{memoir}{%
+          \PackageError{xepersian}{%
+            This  feature does not yet work with the memoir class}{}%
+        }{%
+          \renewcommand\printindex{\newpage%
+            \immediate\closeout\@indexfile
+            \immediate\write18{%
+              xindy -L persian-variant2 -C utf8 -M texindy -M page-ranges \jobname.idx}
+               \@input@{\jobname.ind}}%
+        }
+      \else
+        \PackageError{xepersian}{%
+          “shell escape” (or “write18”) is not enabled. You need to run “xelatex --shell-escape” on your TeX document for this feature to work}{}
+      \fi
+    } , 
+    quickindex-variant / three .code:n = \AtEndOfPackage{%
+      \ifwritexviii
+        \@ifclassloaded{memoir}{%
+          \PackageError{xepersian}{%
+            This  feature does not yet work with the memoir class}{}%
+        }{%
+          \renewcommand\printindex{\newpage%
+            \immediate\closeout\@indexfile
+            \immediate\write18{%
+              xindy -L persian-variant3 -C utf8 -M texindy -M page-ranges \jobname.idx}
+               \@input@{\jobname.ind}}%
+        }
+      \else
+        \PackageError{xepersian}{%
+          “shell escape” (or “write18”) is not enabled. You need to run “xelatex --shell-escape” on your TeX document for this feature to work}{}
+      \fi
+    } 
+  }
+\keys_define:nn { xepersian }
+  {
+    abjad-variant .choice: ,
+    abjad-variant / one .code:n = 
+      \def\PersianAlphs{%
+        \let\@alph\@abjad
+        \let\@Alph\@abjad
+      } ,
+    abjad-variant / two .code:n = 
+     \def\PersianAlphs{%
+       \let\@alph\@Abjad
+       \let\@Alph\@Abjad
+     }
+  }
+\keys_define:nn { xepersian }
+  {
+    defaultlatinfontfeatures .code:n = \AtEndOfPackage{\defaultfontfeatures[\latinfont]{#1}}
+  }
+\keys_define:nn { xepersian }
+  {
+    mathfontsizescale .code:n = \def\xepersian@@math@fontsize@scale{#1}
+  }
+\keys_define:nn { xepersian }
+  {
+    fontsizescale .code:n = \def\xepersian@@fontsize@scale{#1}
+  }
+\keys_define:nn { xepersian }
+  {
+    fontsize .code:n = \def\xepersian@@fontsize@branch{#1}%
+  }
+\keys_define:nn { xepersian }
+  {
+    latinfontsizescale .code:n = \def\xepersian@@latin@fontsize@scale{#1}
+  } 
+ \keys_define:nn { xepersian }
+  {
+    baselineskipscale .code:n = \def\xepersian@@baselineskip@scale{#1}
+  } 
+ \keys_define:nn { xepersian }
+  {
+    latinbaselineskipscale .code:n = \def\xepersian@@latin@baselineskip@scale{#1}
+  }   
+\keys_define:nn { xepersian }
+  {
+    computeautoilg .choice: ,
+    computeautoilg / on .code:n = \@xepersian@@computeautoilgtrue ,
+    computeautoilg / off .code:n = \@xepersian@@computeautoilgfalse ,
+    computeautoilg .default:n = on
+  }  
+\keys_define:nn { xepersian }
+  {
+    debugtextdigitfont .choice: ,
+    debugtextdigitfont / on .code:n = \AtEndOfPackage{%
+      \bidi@AtEndPreamble{%
+        \bidi@patchcmd\xepersian@@start@switch@textdigitfont\xepersian@textdigitfont{%
+          \addfontfeature{Color=C71585}
+        }{}{}
+      }
+    } ,
+    debugtextdigitfont / off .code:n = \relax ,
+    debugtextdigitfont .default:n = on
+  }     
+\keys_set:nn { xepersian }
+  {
+    banner = on ,
+    abjad-variant = two ,
+    fontsizescale = \@ne ,
+    latinfontsizescale = \@ne ,
+    mathfontsizescale = \@ne ,
+    baselineskipscale = \@ne ,
+    latinbaselineskipscale = \@ne
+  }
+\ExplSyntaxOff
+\ProcessKeyOptions
 \edef\@xepersian@info{****************************************************^^J%
 * ^^J%
 * xepersian package (Persian for LaTeX, using XeTeX engine)^^J%
@@ -3624,13 +3805,21 @@ Persian typesetting in XeLaTeX]
 * Primary author of xepersian package: Vafa Khalighi.^^J%
 * ^^J%
 ****************************************************}
-\typeout{\@xepersian@info}
 \edef\xepersian@everyjob{\the\everyjob}
-\everyjob{\xepersian@everyjob\typeout{\@xepersian@info}}
+\if@xepersian@banner
+  \typeout{\@xepersian@info}
+  \everyjob{\xepersian@everyjob\typeout{\@xepersian@info}}
+\fi
 \RequirePackage{fontspec}
 \RequirePackage{xepersian-persiancal}
 \RequirePackage{xepersian-mathdigitspec}
-\RequirePackage{bidi}
+\RequirePackage[%
+  documentdirection=righttoleft,%
+  tabledirection=righttoleft,%
+  script=nonlatin,%
+  footnotedirection=righttoleft,%
+  footnoterule=automatic%
+]{bidi}
 \newcommand*{\xepersianversion}
   {\ensuremath\xepersian@version}
 \newcommand*{\IfxepersianPackageVersionLater}[1]{%
@@ -4120,8 +4309,7 @@ Persian typesetting in XeLaTeX]
        {\@cite@ofmt{\csname b@\@citeb\endcsname}}}}}{#1}}
        
 \renewcommand*{\bidi@font@@outputpage}{\if@RTLmain\setpersianfont\else\resetlatinfont\fi}
-
-\newif\if@xepersian@@computeautoilg       
+     
 \newcount\xepersian@tcl
 \newdimen\xepersian@ilg
 \newdimen\xepersian@strutilg
@@ -4445,7 +4633,7 @@ Persian typesetting in XeLaTeX]
 
 \newcommand*{\@xepersian@pdfcustomproperties}{%
   This is the xepersian package, Version \xepersian@version\space (Release \xepersian@releasename),
-  Released December 10, 2024. 
+  Released December 14, 2024. 
 }
 
 \newcommand\twocolumnstableofcontents{%
@@ -4820,253 +5008,6 @@ number is 999,999,999.}%
     \advance\@tempcnta\@ne}%
 }
 
-
-\define@choicekey{xepersian.sty}{mathdigits}[\xepersian@tempa\xepersian@tempb]{automatic,default,persian}{%
-  \ifcase\xepersian@tempb\relax
-    \AutoMathDigits
-  \or
-    \DefaultMathDigits
-  \or
-    \PersianMathDigits
-  \fi}
-\define@choicekey{xepersian.sty}{inlinemathdigits}[\xepersian@tempa\xepersian@tempb]{automatic,default,persian}{%
-  \ifcase\xepersian@tempb\relax
-    \AutoInlineMathDigits
-  \or
-    \DefaultInlineMathDigits
-  \or
-    \PersianInlineMathDigits
-  \fi}
-\define@choicekey{xepersian.sty}{displaymathdigits}[\xepersian@tempa\xepersian@tempb]{automatic,default,persian}{%
-  \ifcase\xepersian@tempb\relax
-    \AutoDisplayMathDigits
-  \or
-    \DefaultDisplayMathDigits
-  \or
-    \PersianDisplayMathDigits
-  \fi}
-\define@choicekey{xepersian.sty}{RTLdocument}[\xepersian@tempa\xepersian@tempb]{on,off}[on]{%
-  \ifcase\xepersian@tempb\relax
-    \@RTLtrue
-  \or
-    \@RTLfalse
-  \fi}
-  
-\define@choicekey{xepersian.sty}{documentdirection}[\xepersian@tempa\xepersian@tempb]{righttoleft,lefttoright}{%
-  \ifcase\xepersian@tempb\relax
-    \@RTLtrue
-  \or
-    \@RTLfalse
-  \fi}
-  
-
-\define@choicekey{xepersian.sty}{tabledirection}[\xepersian@tempa\xepersian@tempb]{righttoleft,lefttoright}{%
-  \ifcase\xepersian@tempb\relax
-    \@RTLtabtrue
-  \or
-    \@RTLtabfalse
-  \fi}
-  
-\define@choicekey{xepersian.sty}{script}[\xepersian@tempa\xepersian@tempb]{latin,nonlatin}[latin]{%
-  \ifcase\xepersian@tempb\relax
-    \@nonlatinfalse
-  \or
-    \@nonlatintrue
-  \fi}
-  
-\define@choicekey{xepersian.sty}{rldocument}[\xepersian@tempa\xepersian@tempb]{on,off}[on]{%
-  \ifcase\xepersian@tempb\relax
-    \@RTLtrue
-  \or
-    \@RTLfalse
-  \fi}
-\define@choicekey{xepersian.sty}{footnoterule}[\xepersian@tempa\xepersian@tempb]{automatic,left,right,split,textwidth}{%
-  \ifcase\xepersian@tempb\relax
-    \autofootnoterule
-  \or
-    \leftfootnoterule
-  \or
-    \rightfootnoterule
-  \or
-    \SplitFootnoteRule
-  \or
-    \textwidthfootnoterule
-  \fi}
-\define@choicekey{xepersian.sty}{footnotedirection}[\xepersian@tempa\xepersian@tempb]{righttoleft,lefttoright}{%
-  \ifcase\xepersian@tempb\relax
-    \@RTL@footnotetrue
-  \or
-    \@RTL@footnotefalse
-  \fi}
-\define@choicekey{xepersian.sty}{debugfootnotedirection}[\xepersian@tempa\xepersian@tempb]{on,off}[on]{%
-  \ifcase\xepersian@tempb\relax
-    \footdir@debugtrue
-  \or
-    \footdir@debugfalse
-  \fi}
-\define@choicekey{xepersian.sty}{Kashida}[\xepersian@tempa\xepersian@tempb]{on,off}[on]{%
-  \ifcase\xepersian@tempb\relax
-    \input{kashida-xepersian.def}
-  \fi}
-\define@choicekey{xepersian.sty}{localise}[\xepersian@tempa\xepersian@tempb]{on,off}[on]{%
-  \ifcase\xepersian@tempb\relax
-    \input{localise-xepersian.def}
-  \fi}  
-\define@choicekey{xepersian.sty}{extrafootnotefeatures}[\xepersian@tempa\xepersian@tempb]{on,off}[on]{%
-  \ifcase\xepersian@tempb\relax
-    \@extrafootnotefeaturestrue
-  \or
-    \@extrafootnotefeaturesfalse
-  \fi}
-\define@choicekey{xepersian.sty}{quickindex}[\xepersian@tempa\xepersian@tempb]{on,off}[on]{%
-  \ifcase\xepersian@tempb\relax
-     \PackageWarning{xepersian}{Obsolete option}%
-     \ifwritexviii%
-      \@ifclassloaded{memoir}{\PackageError{xepersian}{This  feature does not yet work with the memoir class}{}}{%
-      \renewcommand\printindex{\newpage%
-      \immediate\closeout\@indexfile
-      \immediate\write18{xindy -L persian-variant2 -C utf8 -M texindy -M page-ranges \jobname.idx}
-      \@input@{\jobname.ind}}}%
-      \else
-      \PackageError{xepersian}{“shell escape” (or “write18”) is not enabled. You need to run “xelatex --shell-escape” on your TeX document for this feature to work}{}
-      \fi
-  \fi}
-\define@choicekey{xepersian.sty}{quickindex-variant1}[\xepersian@tempa\xepersian@tempb]{on,off}[on]{%
-  \ifcase\xepersian@tempb\relax
-     \ifwritexviii%
-      \@ifclassloaded{memoir}{\PackageError{xepersian}{This  feature does not yet work with the memoir class}{}}{%
-       \renewcommand\printindex{\newpage%
-        \immediate\closeout\@indexfile
-        \immediate\write18{xindy -L persian-variant1 -C utf8 -M texindy -M page-ranges \jobname.idx}
-        \@input@{\jobname.ind}}}%
-         \else
-        \PackageError{xepersian}{“shell escape” (or “write18”) is not enabled. You need to run “xelatex --shell-escape” on your TeX document for this feature to work}{}
-         \fi
-  \fi}
-\define@choicekey{xepersian.sty}{quickindex-variant2}[\xepersian@tempa\xepersian@tempb]{on,off}[on]{%
-  \ifcase\xepersian@tempb\relax
-     \ifwritexviii%
-      \@ifclassloaded{memoir}{\PackageError{xepersian}{This  feature does not yet work with the memoir class}{}}{%
-       \renewcommand\printindex{\newpage%
-       \immediate\closeout\@indexfile
-       \immediate\write18{xindy -L persian-variant2 -C utf8 -M texindy -M page-ranges \jobname.idx}
-       \@input@{\jobname.ind}}}%
-       \else
-       \PackageError{xepersian}{“shell escape” (or “write18”) is not enabled. You need to run “xelatex --shell-escape” on your TeX document for this feature to work}{}
-       \fi
-  \fi}
-\define@choicekey{xepersian.sty}{abjadvariant}[\xepersian@tempa\xepersian@tempb]{one,two}{%
-  \ifcase\xepersian@tempb\relax
-    \def\PersianAlphs{%
-    \let\@alph\@abjad%
-    \let\@Alph\@abjad%
-    }
-  \or
-    \def\PersianAlphs{%
-    \let\@alph\@Abjad%
-    \let\@Alph\@Abjad%
-    }
-  \fi}
-\DeclareOptionX{defaultlatinfontfeatures}{%
-\defaultfontfeatures
- [\latinfont]
- {#1}
-}
-
-\DeclareOptionX{mathfontsizescale}{%
-  \def\xepersian@@math@fontsize@scale{#1}%
-  }
-
-\DeclareOptionX{fontsizescale}{%
-  \def\xepersian@@fontsize@scale{#1}%
-  }
-  
-\DeclareOptionX{fontsize}{%
-  \xepersian@@fontsize@branch{#1}%
-  }
-  
-\DeclareOptionX{latinfontsizescale}{%
-  \def\xepersian@@latin@fontsize@scale{#1}%
-  }
-  
-\DeclareOptionX{baselineskipscale}{%
-  \def\xepersian@@baselineskip@scale{#1}%
-  }
-  
-\DeclareOptionX{latinbaselineskipscale}{%
-  \def\xepersian@@latin@baselineskip@scale{#1}%
-  }
-  
-\define@choicekey{xepersian.sty}{logo}[\xepersian@tempa\xepersian@tempb]{on,off}[on]{%
-  \ifcase\xepersian@tempb\relax
-    \AtBeginDocument{\@bidi@inslogo@}%
-  \or
-    \let\@bidi@logo@\@empty \let\@bidi@inslogo@\@empty
-  \fi}
-  
-\define@choicekey{xepersian.sty}{pdfinfo}[\xepersian@tempa\xepersian@tempb]{on,off}[on]{%
-  \ifcase\xepersian@tempb\relax
-    \@bidi@pdfm@marktrue
-  \or
-    \@bidi@pdfm@markfalse
-  \fi}
-
-\define@choicekey{xepersian.sty}{computeautoilg}[\xepersian@tempa\xepersian@tempb]{on,off}[on]{%
-  \ifcase\xepersian@tempb\relax
-    \@xepersian@@computeautoilgtrue
-  \or
-    \@xepersian@@computeautoilgfalse
-  \fi}
-
-\define@choicekey{xepersian.sty}{DetectColumn}[\xepersian@tempa\xepersian@tempb]{on,off}[on]{%
-  \ifcase\xepersian@tempb\relax
-  \def\bidi@firstcolumn@status@write{%
-         \protected@write\@auxout{}%
-              {\string\bidi@column@status
-              {1}}}%
-  \def\bidi@lastcolumn@status@write{%
-         \protected@write\@auxout{}%
-              {\string\bidi@column@status{2}}}%
-  \or
-    \let\bidi@firstcolumn@status@write\relax
-    \let\bidi@lastcolumn@status@write\relax
-  \fi}
-
-
-\define@choicekey{xepersian.sty}{debugtextdigitfont}[\xepersian@tempa\xepersian@tempb]{on,off}[on]{%
-  \ifcase\xepersian@tempb\relax
-    \bidi@AtEndPreamble{%
-      \bidi@patchcmd{\xepersian@@start@switch@textdigitfont}%
-      {\xepersian@textdigitfont}{\addfontfeature{Color=C71585}}{}{}%
-    }
-  \or
-    \relax
-  \fi}  
-
-\define@choicekey{xepersian.sty}{perpagefootnote}[\xepersian@tempa\xepersian@tempb]{on,off}[on]{%
-  \ifcase\xepersian@tempb\relax
-    \@bidi@perpage@footnotetrue
-  \or
-    \@bidi@perpage@footnotefalse
-  \fi}
-
-\ExecuteOptionsX{%
-    documentdirection=righttoleft,
-    tabledirection=righttoleft,
-    script=nonlatin,
-    footnotedirection=righttoleft,
-    footnoterule=automatic,
-    abjadvariant=two,
-    DetectColumn=off,
-    fontsizescale=\@ne,
-    latinfontsizescale=\@ne,
-    mathfontsizescale=\@ne,
-    baselineskipscale=\@ne,
-    latinbaselineskipscale=\@ne
-}
-
-\ProcessOptionsX
-
 \if@extrafootnotefeatures
   \input{extrafootnotefeatures-xetex-bidi.def}%
   \input{extrafootnotefeatures-xepersian.def}%
@@ -5125,7 +5066,17 @@ number is 999,999,999.}%
 }{}{}
 \fi
 
-\setlatintextfont[Path,BoldFont={lmroman10-bold},BoldItalicFont={lmroman10-bolditalic},ItalicFont={lmroman10-italic},SmallCapsFont={lmromancaps10-regular},SlantedFont={lmromanslant10-regular},BoldSlantedFont={lmromanslant10-bold}]{lmroman10-regular}%
+\AtEndOfPackage{%
+  \setlatintextfont[%
+    Path,%
+    BoldFont={lmroman10-bold},%
+    BoldItalicFont={lmroman10-bolditalic},%
+    ItalicFont={lmroman10-italic},%
+    SmallCapsFont={lmromancaps10-regular},%
+    SlantedFont={lmromanslant10-regular},%
+    BoldSlantedFont={lmromanslant10-bold}%
+  ]{lmroman10-regular}
+}
 \PersianAlphs
 %    \end{macrocode}
 % \iffalse
