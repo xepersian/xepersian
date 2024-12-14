@@ -245,7 +245,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{0}
+%% \CheckSum{11001}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -3706,7 +3706,7 @@ Persian typesetting in XeLaTeX]
   }
 \keys_define:nn { xepersian }
   {
-    fontsize .code:n = \def\xepersian@@fontsize@branch{#1}%
+    fontsize .code:n = \AtEndOfPackage{\xepersian@@fontsize@branch{#1}}
   }
 \keys_define:nn { xepersian }
   {
@@ -4967,10 +4967,24 @@ number is 999,999,999.}%
 \@ifclassloaded{memoir}{\input{memoir-xepersian.def}}{}
 \@ifclassloaded{imsproc}{\input{imsproc-xepersian.def}}{}
 
+\newtoks\xepersian@toks
+\def\xepersian@tempa#1{%
+\long\def\xepersian@@sp@def##1##2{%
+  \futurelet\xepersian@resa\xepersian@@sp@d##2\@nil\@nil#1\@nil\relax##1}%
+\long\def\xepersian@@sp@d{%
+  \ifx\xepersian@resa\@sptoken
+    \expandafter\xepersian@@sp@b
+  \else
+    \expandafter\xepersian@@sp@b\expandafter#1%
+  \fi}%
+\long\def\xepersian@@sp@b#1##1 \@nil{\xepersian@@sp@c##1}%
+  }
+\xepersian@tempa{ }
+\long\def\xepersian@@sp@c#1\@nil#2\relax#3{\xepersian@toks{#1}\edef#3{\the\xepersian@toks}}
 \def\xepersian@@fontsize@branch#1{%
   \@tempcnta\z@
   \@for\xepersian@tmp:=#1\do{%
-    \KV@@sp@def\xepersian@frag{\xepersian@tmp}%
+    \xepersian@@sp@def\xepersian@frag{\xepersian@tmp}%
     \ifcase\@tempcnta\relax% cnta == 0
       \edef\xepersian@value{\xepersian@frag}%
       \setfontsize{\xepersian@frag}%
