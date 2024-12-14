@@ -3651,60 +3651,32 @@ Persian typesetting in XeLaTeX]
     localise / off .code:n = \relax ,
     localise .default:n = on
   }
+\cs_new_protected:Npn \__xepersian_quickindex_variant:n #1
+{
+  \AtEndOfPackage{%
+      \ifwritexviii
+        \@ifclassloaded{memoir}{%
+          \PackageError{xepersian}{%
+            This~feature~does~not~yet~work~with~the~memoir~class}{}%
+        }{%
+          \renewcommand\printindex{\newpage%
+            \immediate\closeout\@indexfile
+            \immediate\write18{%
+              xindy~-L~persian-variant#1~-C~utf8~-M~texindy~-M~page-ranges~\jobname.idx}
+               \@input@{\jobname.ind}}%
+        }
+      \else
+        \PackageError{xepersian}{%
+          “shell~escape”~(or~“write18”)~is~not~enabled.~You~need~to~run~“xelatex~--shell-escape”~on~your~TeX~document~for~this~feature~to~work}{}
+      \fi
+    }
+}
 \keys_define:nn { xepersian }
   {
     quickindex-variant .choice: ,
-    quickindex-variant / one .code:n = \AtEndOfPackage{%
-      \ifwritexviii
-        \@ifclassloaded{memoir}{%
-          \PackageError{xepersian}{%
-            This~feature~does~not~yet~work~with~the~memoir~class}{}%
-        }{%
-          \renewcommand\printindex{\newpage%
-            \immediate\closeout\@indexfile
-            \immediate\write18{%
-              xindy~-L~persian-variant1~-C~utf8~-M~texindy~-M~page-ranges~\jobname.idx}
-               \@input@{\jobname.ind}}%
-        }
-      \else
-        \PackageError{xepersian}{%
-          “shell~escape”~(or~“write18”)~is~not~enabled.~You~need~to~run~“xelatex~--shell-escape”~on~your~TeX~document~for~this~feature~to~work}{}
-      \fi
-    } ,
-    quickindex-variant / two .code:n = \AtEndOfPackage{%
-      \ifwritexviii
-        \@ifclassloaded{memoir}{%
-          \PackageError{xepersian}{%
-            This~feature~does~not~yet~work~with~the~memoir~class}{}%
-        }{%
-          \renewcommand\printindex{\newpage%
-            \immediate\closeout\@indexfile
-            \immediate\write18{%
-              xindy~-L~persian-variant2~-C~utf8~-M~texindy~-M~page-ranges~\jobname.idx}
-               \@input@{\jobname.ind}}%
-        }
-      \else
-        \PackageError{xepersian}{%
-          “shell~escape”~(or~“write18”)~is~not~enabled.~You~need~to~run~“xelatex~--shell-escape”~on~your~TeX~document~for~this~feature~to~work}{}
-      \fi
-    } ,
-    quickindex-variant / three .code:n = \AtEndOfPackage{%
-      \ifwritexviii
-        \@ifclassloaded{memoir}{%
-          \PackageError{xepersian}{%
-            This~feature~does~not~yet~work~with~the~memoir~class}{}%
-        }{%
-          \renewcommand\printindex{\newpage%
-            \immediate\closeout\@indexfile
-            \immediate\write18{%
-              xindy~-L~persian-variant3~-C~utf8~-M~texindy~-M~page-ranges~\jobname.idx}
-               \@input@{\jobname.ind}}%
-        }
-      \else
-        \PackageError{xepersian}{%
-          “shell~escape”~(or~“write18”)~is~not~enabled.~You~need~to~run~“xelatex~--shell-escape”~on~your~TeX~document~for~this~feature~to~work}{}
-      \fi
-    } ,
+    quickindex-variant / one .code:n = \__xepersian_quickindex_variant:n { 1 } ,
+    quickindex-variant / two .code:n = \__xepersian_quickindex_variant:n { 2 } ,
+    quickindex-variant / three .code:n = \__xepersian_quickindex_variant:n { 3 }
   }
 \keys_define:nn { xepersian }
   {
