@@ -5,7 +5,7 @@
 %<*readme>
 ____________________
 The XePersian package
-v25.3
+v25.4
 
 The xepersian package provides a convenient interface for 
 typesetting Persian and English texts in LaTeX, using XeTeX 
@@ -31,7 +31,7 @@ also appear in the Discussions space under the Announcements
 category.
   
   
-Current version release date: 2024/12/15
+Current version release date: 2024/12/17
 ___________________________________________
 Vafa Khalighi
 
@@ -168,7 +168,7 @@ by Vafa Khalighi.
 \documentclass{ltxdoc}
 \input{xepersian-doc-preamble.ltx}
 \hypersetup{%
-  pdftitle={Source documentation for version 25.3 of the XePersian
+  pdftitle={Source documentation for version 25.4 of the XePersian
                 package}%
 }
 \EnableCrossrefs
@@ -187,7 +187,7 @@ by Vafa Khalighi.
 % \GetFileInfo{\jobname.dtx}
 % \title{\textcolor{xepersianblue}{\Huge The \textsf{\XePersian} \textit{Package}}\\
 %\LARGE Persian for \LaTeXe, using {\XeTeX} engine\\[5pt]
-%\large Source documentation for \textcolor{xepersianblue}{version 25.3}}
+%\large Source documentation for \textcolor{xepersianblue}{version 25.4}}
 % \author{Vafa Khalighi\thanks{Thanks to the bidi-tex GitHub organization consisted of David Carlisle and other members of the  {\LaTeX} team for maintaining the package in the period 2018--2020.}}
 %\setcounter{page}{0}
 %\thispagestyle{empty}
@@ -197,7 +197,7 @@ by Vafa Khalighi.
 %\textcolor{xepersianblue}{\Huge The \textsf{\XePersian} \textit{Package}}
 %
 %\Large
-%Source documentation for \textcolor{xepersianblue}{version 25.3}}
+%Source documentation for \textcolor{xepersianblue}{version 25.4}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -245,7 +245,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{11001}
+%% \CheckSum{10981}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -2089,26 +2089,8 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{kashida-xepersian.def}}
 %    \begin{macrocode}
-\ProvidesFile{kashida-xepersian.def}[2020/05/16 v0.8 implementation of Kashida for xepersian package]
-%
-% The new changes is minimal and only cosmetic; To resolve the 
-% issue properly, I will be studying TeX line breaking algorithms and
-% experiment to see how much of it I can mimic. The idea of using
-% a rule or even a box is awful and it breaks a lot of things. The ideal
-% solution is to insert Kashida without any rules or boxes or if
-% the font offers the alternative forms, it can be used for Kashida.
-% Unfortunately, computing the stretch using the \pdfsavepos and
-% \pdflastxpos primitives from the PDFTeX engine is bad and
-% impractical for several reasons.The process is extremely
-% slow and requires at least two runs of TeX. On a particular line, 
-% we need to write to the aux file at least 10 times, on a page we
-% have on average around 10 lines and hence, for a 100 pages
-% document, we have to do this 10,000 times. These statistics are
-% very modest. On the other hand, if we reach max count (which is
-% very likely), then we have to do some devious things.
-%
+\ProvidesFile{kashida-xepersian.def}[2024/12/17 v0.9 implementation of Kashida for xepersian package]
 \chardef\xepersian@zwj="200D % zero-width joiner
-\chardef\xepersian@lrm="200E % left to right mark
 \chardef\xepersian@kashidachar="0640 % kashida
 
 \chardef\xepersian@D=10 % dual-joiner class
@@ -2120,18 +2102,12 @@ by Vafa Khalighi.
 \def\xepersian@kashida{%
   \if@Kashida@on
     \xepersian@zwj
-    \xepersian@lrm
     \nobreak
     \leaders\hrule height \XeTeXglyphbounds\tw@
     \the\XeTeXcharglyph\xepersian@kashidachar  
     depth \XeTeXglyphbounds\f@ur
     \the\XeTeXcharglyph\xepersian@kashidachar 
     \hskip0pt plus 0.5em
-%    \dimexpr \fontcharwd\font\xepersian@kashidachar -
-%    \XeTeXglyphbounds\@ne
-%    \the\XeTeXcharglyph\xepersian@kashidachar -
-%    \XeTeXglyphbounds\thr@@
-%    \the\XeTeXcharglyph\xepersian@kashidachar \relax
     \xepersian@zwj
   \fi
 }
@@ -3592,8 +3568,8 @@ U+003E U+003E <> U+00BB ; >> -> RIGHT POINTING GUILLEMET
 % \section{File \texttt{xepersian.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\xepersian@version{25.3}
-\def\xepersiandate{2024/12/15}
+\def\xepersian@version{25.4}
+\def\xepersiandate{2024/12/17}
 \def\xepersian@releasename{Mount Damavand}
 \def\xepersian@persian@@releasename{دماوند}
 \newcommand*{\xepersianreleasename}{\if@RTL\xepersian@persian@@releasename\else\xepersian@releasename\fi}
@@ -4605,7 +4581,7 @@ Persian typesetting in XeLaTeX]
 
 \newcommand*{\@xepersian@pdfcustomproperties}{%
   This is the xepersian package, Version \xepersian@version\space (Release \xepersian@releasename),
-  Released December 14, 2024. 
+  Released December 17, 2024. 
 }
 
 \newcommand\twocolumnstableofcontents{%
