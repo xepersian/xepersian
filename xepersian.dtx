@@ -5,7 +5,7 @@
 %<*readme>
 ____________________
 The XePersian package
-v25.4
+v25.5
 
 The xepersian package provides a convenient interface for 
 typesetting Persian and English texts in LaTeX, using XeTeX 
@@ -31,7 +31,7 @@ also appear in the Discussions space under the Announcements
 category.
   
   
-Current version release date: 2024/12/17
+Current version release date: 2024/12/20
 ___________________________________________
 Vafa Khalighi
 
@@ -168,7 +168,7 @@ by Vafa Khalighi.
 \documentclass{ltxdoc}
 \input{xepersian-doc-preamble.ltx}
 \hypersetup{%
-  pdftitle={Source documentation for version 25.4 of the XePersian
+  pdftitle={Source documentation for version 25.5 of the XePersian
                 package}%
 }
 \EnableCrossrefs
@@ -187,7 +187,7 @@ by Vafa Khalighi.
 % \GetFileInfo{\jobname.dtx}
 % \title{\textcolor{xepersianblue}{\Huge The \textsf{\XePersian} \textit{Package}}\\
 %\LARGE Persian for \LaTeXe, using {\XeTeX} engine\\[5pt]
-%\large Source documentation for \textcolor{xepersianblue}{version 25.4}}
+%\large Source documentation for \textcolor{xepersianblue}{version 25.5}}
 % \author{Vafa Khalighi\thanks{Thanks to the bidi-tex GitHub organization consisted of David Carlisle and other members of the  {\LaTeX} team for maintaining the package in the period 2018--2020.}}
 %\setcounter{page}{0}
 %\thispagestyle{empty}
@@ -197,7 +197,7 @@ by Vafa Khalighi.
 %\textcolor{xepersianblue}{\Huge The \textsf{\XePersian} \textit{Package}}
 %
 %\Large
-%Source documentation for \textcolor{xepersianblue}{version 25.4}}
+%Source documentation for \textcolor{xepersianblue}{version 25.5}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -2089,15 +2089,15 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{kashida-xepersian.def}}
 %    \begin{macrocode}
-\ProvidesFile{kashida-xepersian.def}[2024/12/17 v0.9 implementation of Kashida for xepersian package]
+\ProvidesFile{kashida-xepersian.def}[2024/12/20 v1.0 implementation of Kashida for xepersian package]
 \chardef\xepersian@zwj="200D % zero-width joiner
 \chardef\xepersian@kashidachar="0640 % kashida
 
-\chardef\xepersian@D=10 % dual-joiner class
-\chardef\xepersian@L=11 % lam
-\chardef\xepersian@R=12 % right-joiner
-\chardef\xepersian@A=13 % alef
-\chardef\xepersian@V=4096 % vowel or other combining mark (to be ignored)
+\chardef\xepersian@dualjoiner=10 % dual-joiner class
+\chardef\xepersian@lam=11 % lam
+\chardef\xepersian@rightjoiner=12 % right-joiner
+\chardef\xepersian@alef=13 % alef
+\chardef\xepersian@vowel=4096 % vowel or other combining mark (to be ignored)
 \newif\if@Kashida@on
 \def\xepersian@kashida{%
   \if@Kashida@on
@@ -2122,23 +2122,23 @@ by Vafa Khalighi.
   \expandafter\next\charlist,,\end}
 \def\finishsetclass#1,,\end{}
 
-\setclass \xepersian@A {0622,0623,0625,0627}
-\setclass \xepersian@R {0624,0629,062F,0630,0631,0632,0648,0698}
-\setclass \xepersian@D {0626,0628,062A,062B,062C,062D,062E}
-\setclass \xepersian@D {0633,0634,0635,0636,0637,0638,0639,063A}
-\setclass \xepersian@D {0640,0641,0642,0643,0645,0646,0647,0649,064A}
-\setclass \xepersian@D {067E,0686,06A9,06AF,06CC}
-\setclass \xepersian@L {0644}
-\setclass \xepersian@V {064B,064C,064D,064E,064F,0650,0651,0652}
+\setclass \xepersian@alef {0622,0623,0625,0627}
+\setclass \xepersian@rightjoiner {0624,0629,062F,0630,0631,0632,0648,0698}
+\setclass \xepersian@dualjoiner {0626,0628,062A,062B,062C,062D,062E}
+\setclass \xepersian@dualjoiner {0633,0634,0635,0636,0637,0638,0639,063A}
+\setclass \xepersian@dualjoiner {0640,0641,0642,0643,0645,0646,0647,0649,064A}
+\setclass \xepersian@dualjoiner {067E,0686,06A9,06AF,06CC}
+\setclass \xepersian@lam {0644}
+\setclass \xepersian@vowel {064B,064C,064D,064E,064F,0650,0651,0652}
 
-\XeTeXinterchartoks \xepersian@D \xepersian@D = {\xepersian@kashida}
-\XeTeXinterchartoks \xepersian@L \xepersian@D = {\xepersian@kashida}
-\XeTeXinterchartoks \xepersian@D \xepersian@L = {\xepersian@kashida}
-\XeTeXinterchartoks \xepersian@L \xepersian@L = {\xepersian@kashida}
-\XeTeXinterchartoks \xepersian@D \xepersian@R = {\xepersian@kashida}
-\XeTeXinterchartoks \xepersian@D \xepersian@A = {\xepersian@kashida}
-\XeTeXinterchartoks \xepersian@L \xepersian@R = {\xepersian@kashida}
-\XeTeXinterchartoks \xepersian@L \xepersian@A = {}
+\XeTeXinterchartoks \xepersian@dualjoiner \xepersian@dualjoiner = {\xepersian@kashida}
+\XeTeXinterchartoks \xepersian@lam \xepersian@dualjoiner = {\xepersian@kashida}
+\XeTeXinterchartoks \xepersian@dualjoiner \xepersian@lam = {\xepersian@kashida}
+\XeTeXinterchartoks \xepersian@lam \xepersian@lam = {\xepersian@kashida}
+\XeTeXinterchartoks \xepersian@dualjoiner \xepersian@rightjoiner = {\xepersian@kashida}
+\XeTeXinterchartoks \xepersian@dualjoiner \xepersian@alef = {\xepersian@kashida}
+\XeTeXinterchartoks \xepersian@lam \xepersian@rightjoiner = {\xepersian@kashida}
+\XeTeXinterchartoks \xepersian@lam \xepersian@alef = {}
 
 \newcommand{\KashidaOn}{\@Kashida@ontrue}
 \newcommand{\KashidaOff}{\@Kashida@onfalse}
@@ -3568,8 +3568,8 @@ U+003E U+003E <> U+00BB ; >> -> RIGHT POINTING GUILLEMET
 % \section{File \texttt{xepersian.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\xepersian@version{25.4}
-\def\xepersiandate{2024/12/17}
+\def\xepersian@version{25.5}
+\def\xepersiandate{2024/12/20}
 \def\xepersian@releasename{Mount Damavand}
 \def\xepersian@persian@@releasename{دماوند}
 \newcommand*{\xepersianreleasename}{\if@RTL\xepersian@persian@@releasename\else\xepersian@releasename\fi}
@@ -3897,15 +3897,15 @@ Persian typesetting in XeLaTeX]
    \XeTeXinterchartoks \bidi@digits@charclass \z@ = {\xepersian@@stop@switch@textdigitfont}
    \XeTeXinterchartoks \bidi@digits@charclass  \bidi@sepmark@charclass = {\xepersian@@stop@switch@textdigitfont}
    \XeTeXinterchartoks \bidi@sepmark@charclass  \bidi@digits@charclass = {\DigitsDotDashInterCharToks\xepersian@@start@switch@textdigitfont}
-   \if@bidi@csundef{xepersian@D}{}{%
-     \XeTeXinterchartoks \xepersian@D  \bidi@digits@charclass = {\xepersian@@start@switch@textdigitfont}
-     \XeTeXinterchartoks \bidi@digits@charclass  \xepersian@D = {\xepersian@@stop@switch@textdigitfont}
-     \XeTeXinterchartoks \xepersian@L  \bidi@digits@charclass = {\xepersian@@start@switch@textdigitfont}
-     \XeTeXinterchartoks \bidi@digits@charclass  \xepersian@L = {\xepersian@@stop@switch@textdigitfont}
-     \XeTeXinterchartoks \xepersian@A  \bidi@digits@charclass = {\xepersian@@start@switch@textdigitfont}
-     \XeTeXinterchartoks \bidi@digits@charclass  \xepersian@A = {\xepersian@@stop@switch@textdigitfont}
-     \XeTeXinterchartoks \xepersian@R  \bidi@digits@charclass = {\xepersian@@start@switch@textdigitfont}
-     \XeTeXinterchartoks \bidi@digits@charclass  \xepersian@R = {\xepersian@@stop@switch@textdigitfont}
+   \if@bidi@csundef{xepersian@dualjoiner}{}{%
+     \XeTeXinterchartoks \xepersian@dualjoiner  \bidi@digits@charclass = {\xepersian@@start@switch@textdigitfont}
+     \XeTeXinterchartoks \bidi@digits@charclass  \xepersian@dualjoiner = {\xepersian@@stop@switch@textdigitfont}
+     \XeTeXinterchartoks \xepersian@lam  \bidi@digits@charclass = {\xepersian@@start@switch@textdigitfont}
+     \XeTeXinterchartoks \bidi@digits@charclass  \xepersian@lam = {\xepersian@@stop@switch@textdigitfont}
+     \XeTeXinterchartoks \xepersian@alef  \bidi@digits@charclass = {\xepersian@@start@switch@textdigitfont}
+     \XeTeXinterchartoks \bidi@digits@charclass  \xepersian@alef = {\xepersian@@stop@switch@textdigitfont}
+     \XeTeXinterchartoks \xepersian@rightjoiner  \bidi@digits@charclass = {\xepersian@@start@switch@textdigitfont}
+     \XeTeXinterchartoks \bidi@digits@charclass  \xepersian@rightjoiner = {\xepersian@@stop@switch@textdigitfont}
    }
  }
  
@@ -4581,7 +4581,7 @@ Persian typesetting in XeLaTeX]
 
 \newcommand*{\@xepersian@pdfcustomproperties}{%
   This is the xepersian package, Version \xepersian@version\space (Release \xepersian@releasename),
-  Released December 17, 2024. 
+  Released December 20, 2024. 
 }
 
 \newcommand\twocolumnstableofcontents{%
