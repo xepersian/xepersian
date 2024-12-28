@@ -5,7 +5,7 @@
 %<*readme>
 ____________________
 The XePersian package
-v25.6
+v25.7
 
 The xepersian package provides a convenient interface for 
 typesetting Persian and English texts in LaTeX, using XeTeX 
@@ -31,7 +31,7 @@ also appear in the Discussions space under the Announcements
 category.
   
   
-Current version release date: 2024/12/28
+Current version release date: 2025/01/01
 ___________________________________________
 Vafa Khalighi
 
@@ -168,7 +168,7 @@ by Vafa Khalighi.
 \documentclass{ltxdoc}
 \input{xepersian-doc-preamble.ltx}
 \hypersetup{%
-  pdftitle={Source documentation for version 25.6 of the XePersian
+  pdftitle={Source documentation for version 25.7 of the XePersian
                 package}%
 }
 \EnableCrossrefs
@@ -187,7 +187,7 @@ by Vafa Khalighi.
 % \GetFileInfo{\jobname.dtx}
 % \title{\textcolor{xepersianblue}{\Huge The \textsf{\XePersian} \textit{Package}}\\
 %\LARGE Persian for \LaTeXe, using {\XeTeX} engine\\[5pt]
-%\large Source documentation for \textcolor{xepersianblue}{version 25.6}}
+%\large Source documentation for \textcolor{xepersianblue}{version 25.7}}
 % \author{Vafa Khalighi\thanks{Thanks to the bidi-tex GitHub organization consisted of David Carlisle and other members of the  {\LaTeX} team for maintaining the package in the period 2018--2020.}}
 %\setcounter{page}{0}
 %\thispagestyle{empty}
@@ -197,7 +197,7 @@ by Vafa Khalighi.
 %\textcolor{xepersianblue}{\Huge The \textsf{\XePersian} \textit{Package}}
 %
 %\Large
-%Source documentation for \textcolor{xepersianblue}{version 25.6}}
+%Source documentation for \textcolor{xepersianblue}{version 25.7}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -245,7 +245,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{10979}
+%% \CheckSum{10981}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -3568,8 +3568,8 @@ U+003E U+003E <> U+00BB ; >> -> RIGHT POINTING GUILLEMET
 % \section{File \texttt{xepersian.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\xepersian@version{25.6}
-\def\xepersiandate{2024/12/28}
+\def\xepersian@version{25.7}
+\def\xepersiandate{2025/01/01}
 \def\xepersian@releasename{Mount Alvand}
 \def\xepersian@persian@@releasename{کوه الوند}
 \newcommand*{\xepersianreleasename}{\if@RTL\xepersian@persian@@releasename\else\xepersian@releasename\fi}
@@ -4572,7 +4572,7 @@ Persian typesetting in XeLaTeX]
 \renewcommand*{\@bidi@logo@}{%
   \@bidi@logo@hb@xt@columnwidth
   {\hss\bfseries 
-حروف‌چینی شده با
+حروف‌چینی شده {\today} در {\TypesetTime} با
   \textsf{\XePersian}\quad\@bidi@logo{xepersian-logo.pdf}}}
 
 \renewcommand*{\@bidi@pdfcreator}{%
@@ -4581,7 +4581,7 @@ Persian typesetting in XeLaTeX]
 
 \newcommand*{\@xepersian@pdfcustomproperties}{%
   This is the xepersian package, Version \xepersian@version\space (Release \xepersian@releasename),
-  Released December 28, 2024. 
+  Released January 1, 2025. 
 }
 
 \newcommand\twocolumnstableofcontents{%
