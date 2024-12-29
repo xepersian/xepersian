@@ -5,7 +5,7 @@
 %<*readme>
 ____________________
 The XePersian package
-v25.7
+v25.8
 
 The xepersian package provides a convenient interface for 
 typesetting Persian and English texts in LaTeX, using XeTeX 
@@ -31,7 +31,7 @@ also appear in the Discussions space under the Announcements
 category.
   
   
-Current version release date: 2024/12/28
+Current version release date: 2025/01/01
 ___________________________________________
 Vafa Khalighi
 
@@ -168,7 +168,7 @@ by Vafa Khalighi.
 \documentclass{ltxdoc}
 \input{xepersian-doc-preamble.ltx}
 \hypersetup{%
-  pdftitle={Source documentation for version 25.7 of the XePersian
+  pdftitle={Source documentation for version 25.8 of the XePersian
                 package}%
 }
 \EnableCrossrefs
@@ -187,7 +187,7 @@ by Vafa Khalighi.
 % \GetFileInfo{\jobname.dtx}
 % \title{\textcolor{xepersianblue}{\Huge The \textsf{\XePersian} \textit{Package}}\\
 %\LARGE Persian for \LaTeXe, using {\XeTeX} engine\\[5pt]
-%\large Source documentation for \textcolor{xepersianblue}{version 25.7}}
+%\large Source documentation for \textcolor{xepersianblue}{version 25.8}}
 % \author{Vafa Khalighi\thanks{Thanks to the bidi-tex GitHub organization consisted of David Carlisle and other members of the  {\LaTeX} team for maintaining the package in the period 2018--2020.}}
 %\setcounter{page}{0}
 %\thispagestyle{empty}
@@ -197,7 +197,7 @@ by Vafa Khalighi.
 %\textcolor{xepersianblue}{\Huge The \textsf{\XePersian} \textit{Package}}
 %
 %\Large
-%Source documentation for \textcolor{xepersianblue}{version 25.7}}
+%Source documentation for \textcolor{xepersianblue}{version 25.8}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -245,7 +245,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{10981}
+%% \CheckSum{10998}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -3568,8 +3568,8 @@ U+003E U+003E <> U+00BB ; >> -> RIGHT POINTING GUILLEMET
 % \section{File \texttt{xepersian.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\xepersian@version{25.7}
-\def\xepersiandate{2024/12/28}
+\def\xepersian@version{25.8}
+\def\xepersiandate{2025/01/01}
 \def\xepersian@releasename{Mount Alvand}
 \def\xepersian@persian@@releasename{کوه الوند}
 \newcommand*{\xepersianreleasename}{\if@RTL\xepersian@persian@@releasename\else\xepersian@releasename\fi}
@@ -4581,7 +4581,7 @@ Persian typesetting in XeLaTeX]
 
 \newcommand*{\@xepersian@pdfcustomproperties}{%
   This is the xepersian package, Version \xepersian@version\space (Release \xepersian@releasename),
-  Released December 28, 2024. 
+  Released January 1, 2025. 
 }
 
 \newcommand\twocolumnstableofcontents{%
@@ -6431,7 +6431,7 @@ indexblock environment may only appear inside frontpage environment.
 % \section{File \texttt{xepersian-persiancal.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{xepersian-persiancal}[2012/07/25 v0.2 provides Persian calendar]
+\ProvidesPackage{xepersian-persiancal}[2025/01/01 v0.3 provides Persian calendar]
 
 \newif\ifXePersian@leap \newif\ifXePersian@kabiseh
 \newcount\XePersian@i  \newcount\XePersian@y  \newcount\XePersian@m  \newcount\XePersian@d
@@ -6602,6 +6602,12 @@ indexblock environment may only appear inside frontpage environment.
 آبان\or آذر\or
 دی\or بهمن\or
 اسفند\fi}
+
+\newcommand*{\persianseason}{%
+  \ifcase\persianmonth\or
+  بهار\or بهار\or بهار\or تابستان\or تابستان\or تابستان\or
+  پاییز\or پاییز\or پاییز\or زمستان\or زمستان\or زمستان\fi
+}
 %    \end{macrocode}
 % \iffalse
 %</xepersian-persiancal.sty>
