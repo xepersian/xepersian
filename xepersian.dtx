@@ -245,7 +245,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{10998}
+%% \CheckSum{10999}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -5921,7 +5921,7 @@ indexblock environment may only appear inside frontpage environment.
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{xepersian-mathdigitspec}
-  [2022/05/20 v1.2.0 Unicode Persian math digits in XeLaTeX]
+  [2025/01/01 v1.2.1 Unicode Persian math digits in XeLaTeX]
 \def\new@mathgroup{\alloc@8\mathgroup\chardef\@cclvi}
 \let\newfam\new@mathgroup
 \def\select@group#1#2#3#4{%
@@ -6208,7 +6208,7 @@ indexblock environment may only appear inside frontpage environment.
     \fi
    \fi
  \fi}
-\mathcode`.="8000\relax
+\AtBeginDocument{\mathcode`.="8000\relax}
 \def\MathDecimalSeparator{\ifx\persiandecimalseparator\undefined .\else \persiandecimalseparator\fi}
 \def\DefaultMathDecimalSeparator{.}
 \def\DefaultInlineMathDigits{\def\SetInlineMathDigits{}}
