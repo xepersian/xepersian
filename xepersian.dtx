@@ -244,7 +244,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{10941}
+%% \CheckSum{0}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -4849,27 +4849,34 @@ number is 999,999,999.}%
  for the main Persian text}{Use `\settextfont' to load a font.}%
 }{}}
 \@ifdefinitionfileloaded{footnote-xetex-bidi}{\input{footnote-xetex-xepersian.def}}{}
-\@ifpackageloaded{appendix}{\input{appendix-xetex-xepersian.def}}{}
-\@ifpackageloaded{listings}{\input{listings-xetex-xepersian.def}}{}
-\@ifpackageloaded{algorithmic}{\input{algorithmic-xetex-xepersian.def}}{}
-\@ifpackageloaded{algorithm}{\input{algorithm-xetex-xepersian.def}}{}
-\@ifpackageloaded{backref}{\input{backref-xetex-xepersian.def}}{}
-\@ifpackageloaded{beamerbasetranslator}{\input{beamerbasetranslator-xetex-xepersian.def}}{}
-\@ifpackageloaded{fancyref}{\input{fancyref-xetex-xepersian.def}}{}
-\@ifpackageloaded{bidituftesidenote}{\input{bidituftesidenote-xetex-xepersian.def}}{}
-\@ifpackageloaded{breqn}{\input{breqn-xetex-xepersian.def}}{}
-\@ifpackageloaded{enumerate}{\input{enumerate-xetex-xepersian.def}}{}
-\@ifpackageloaded{enumitem}{\input{enumitem-xetex-xepersian.def}}{}
-\@ifpackageloaded{framed}{\input{framed-xetex-xepersian.def}}{}
-\@ifpackageloaded{glossaries}{\input{glossaries-xetex-xepersian.def}}{}
-\@ifpackageloaded{hyperref}{\input{hyperref-xetex-xepersian.def}}{}
-\@ifpackageloaded{minitoc}{\input{minitoc-xetex-xepersian.def}}{}
-\@ifpackageloaded{natbib}{\input{natbib-xetex-xepersian.def}}{}
-\@ifpackageloaded{soul}{\input{soul-xetex-xepersian.def}}{}
-\@ifpackageloaded{tkz-linknodes}{\input{tkz-linknodes-xetex-xepersian.def}}{}
+
+
+
 \@ifpackageloaded{tocloft}{\@ifclassloaded{memoir}{}{\input{tocloft-xetex-xepersian.def}}}{}
-\@ifpackageloaded{url}{\input{url-xetex-xepersian.def}}{}
-\@ifpackageloaded{varioref}{\input{varioref-xetex-xepersian.def}}{}
+
+\ApplyPatchToPackages{%
+  algorithm, %
+  algorithmic, %
+  appendix, %
+  backref, %
+  beamerbasetranslator, %
+  bidituftesidenote, %
+  breqn, %
+  enumerate, %
+  enumitem, %
+  fancyref, %
+  framed, %
+  glossaries, %
+  hyperref, %
+  listings, %
+  minitoc, %
+  natbib, %
+  soul, %
+  tkz-linknodes, %
+  url, %
+  varioref %
+}[xepersian]
+
 \@ifclassloaded{article}{\input{article-xetex-xepersian.def}}{}
 \@ifclassloaded{extarticle}{\input{extarticle-xetex-xepersian.def}}{}
 \@ifclassloaded{artikel1}{\input{artikel1-xetex-xepersian.def}}{}
