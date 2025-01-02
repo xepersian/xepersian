@@ -4850,9 +4850,34 @@ number is 999,999,999.}%
 }{}}
 \@ifdefinitionfileloaded{footnote-xetex-bidi}{\input{footnote-xetex-xepersian.def}}{}
 
-
-
 \@ifpackageloaded{tocloft}{\@ifclassloaded{memoir}{}{\input{tocloft-xetex-xepersian.def}}}{}
+
+\ApplyPatchToClasses{%
+  article, %
+  amsart, %
+  amsbook, %
+  artikel1, %
+  artikel2, %
+  artikel3, %
+  beamer, %
+  bidimoderncv, %
+  boek, %
+  boek3, %
+  book, %
+  bookest, %
+  extbook, %
+  extarticle, %
+  extreport, %
+  imsproc, %
+  memoir, %
+  rapport1, %
+  rapport3, %
+  refrep, %
+  report, %
+  scrartcl, %
+  scrbook, %
+  scrreprt %
+}[xepersian]
 
 \ApplyPatchToPackages{%
   algorithm, %
@@ -4877,30 +4902,6 @@ number is 999,999,999.}%
   varioref %
 }[xepersian]
 
-\@ifclassloaded{article}{\input{article-xetex-xepersian.def}}{}
-\@ifclassloaded{extarticle}{\input{extarticle-xetex-xepersian.def}}{}
-\@ifclassloaded{artikel1}{\input{artikel1-xetex-xepersian.def}}{}
-\@ifclassloaded{artikel2}{\input{artikel2-xetex-xepersian.def}}{}
-\@ifclassloaded{artikel3}{\input{artikel3-xetex-xepersian.def}}{}
-\@ifclassloaded{amsart}{\input{amsart-xetex-xepersian.def}}{}
-\@ifclassloaded{beamer}{\input{beamer-xetex-xepersian.def}}{}
-\@ifclassloaded{bidimoderncv}{\input{bidimoderncv-xetex-xepersian.def}}{}
-\@ifclassloaded{report}{\input{report-xetex-xepersian.def}}{}
-\@ifclassloaded{extreport}{\input{extreport-xetex-xepersian.def}}{}
-\@ifclassloaded{rapport1}{\input{rapport1-xetex-xepersian.def}}{}
-\@ifclassloaded{rapport3}{\input{rapport3-xetex-xepersian.def}}{}
-\@ifclassloaded{scrartcl}{\input{scrartcl-xetex-xepersian.def}}{}
-\@ifclassloaded{scrbook}{\input{scrbook-xetex-xepersian.def}}{}
-\@ifclassloaded{scrreprt}{\input{scrreprt-xetex-xepersian.def}}{}
-\@ifclassloaded{amsbook}{\input{amsbook-xetex-xepersian.def}}{}
-\@ifclassloaded{boek3}{\input{boek3-xetex-xepersian.def}}{}
-\@ifclassloaded{boek}{\input{boek-xetex-xepersian.def}}{}
-\@ifclassloaded{bookest}{\input{bookest-xetex-xepersian.def}}{}
-\@ifclassloaded{extbook}{\input{extbook-xetex-xepersian.def}}{}
-\@ifclassloaded{book}{\input{book-xetex-xepersian.def}}{}
-\@ifclassloaded{refrep}{\input{refrep-xetex-xepersian.def}}{}
-\@ifclassloaded{memoir}{\input{memoir-xetex-xepersian.def}}{}
-\@ifclassloaded{imsproc}{\input{imsproc-xetex-xepersian.def}}{}
 \@ifdefinitionfileloaded{extrafootnotefeatures-xetex-bidi}{\input{extrafootnotefeatures-xetex-xepersian.def}}{}
 
 \newtoks\xepersian@toks
