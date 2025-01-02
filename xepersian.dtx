@@ -101,10 +101,10 @@ by Vafa Khalighi.
 \generate{\file{xepersian-localize-environments-xetex-xepersian.def}{\from{\jobname.dtx}{table,xepersian-localize-environments-xetex-xepersian.def}}}
 \generate{\file{extarticle-xetex-xepersian.def}{\from{\jobname.dtx}{table,extarticle-xetex-xepersian.def}}}
 \generate{\file{extbook-xetex-xepersian.def}{\from{\jobname.dtx}{table,extbook-xetex-xepersian.def}}}
-\generate{\file{extrafootnotefeatures-xetex-xepersian.def}{\from{\jobname.dtx}{table,extrafootnotefeatures-xetex-xepersian.def}}}
+\generate{\file{extrafootnotefeatures-xetex-bidi-xetex-xepersian.def}{\from{\jobname.dtx}{table,extrafootnotefeatures-xetex-bidi-xetex-xepersian.def}}
 \generate{\file{extreport-xetex-xepersian.def}{\from{\jobname.dtx}{table,extreport-xetex-xepersian.def}}}
 \generate{\file{fancyref-xetex-xepersian.def}{\from{\jobname.dtx}{table,fancyref-xetex-xepersian.def}}}
-\generate{\file{footnote-xetex-xepersian.def}{\from{\jobname.dtx}{table,footnote-xetex-xepersian.def}}}
+\generate{\file{footnote-xetex-bidi-xetex-xepersian.def}{\from{\jobname.dtx}{table,footnote-xetex-bidi-xetex-xepersian.def}}}
 \generate{\file{framed-xetex-xepersian.def}{\from{\jobname.dtx}{table,framed-xetex-xepersian.def}}}
 \generate{\file{glossaries-xetex-xepersian.def}{\from{\jobname.dtx}{table,glossaries-xetex-xepersian.def}}}
 \generate{\file{hyperref-xetex-xepersian.def}{\from{\jobname.dtx}{table,hyperref-xetex-xepersian.def}}}
@@ -1778,17 +1778,17 @@ by Vafa Khalighi.
 %    \end{macrocode}
 % \iffalse
 %</extbook-xetex-xepersian.def>
-%<*extrafootnotefeatures-xetex-xepersian.def>
+%<*extrafootnotefeatures-xetex-bidi-xetex-xepersian.def>
 %\fi
-% \section{File \texttt{extrafootnotefeatures-xetex-xepersian.def}}
+% \section{File \texttt{extrafootnotefeatures-xetex-bidi-xetex-xepersian.def}}
 %    \begin{macrocode}
-\ProvidesFile{extrafootnotefeatures-xetex-xepersian.def}[2012/01/01 v0.2 xepersian adaptations for extrafootnotefeatures option for XeTeX engine]
+\ProvidesFile{extrafootnotefeatures-xetex-bidi-xetex-xepersian.def}[2012/01/01 v0.2 xepersian adaptations for extrafootnotefeatures option for XeTeX engine]
 \renewcommand{\foottextfont}{\footnotesize\if@RTL@footnote\else\resetlatinfont\fi}
 \renewcommand{\LTRfoottextfont}{\footnotesize\resetlatinfont}
 \renewcommand{\RTLfoottextfont}{\footnotesize\setpersianfont}
 %    \end{macrocode}
 % \iffalse
-%</extrafootnotefeatures-xetex-xepersian.def>
+%</extrafootnotefeatures-xetex-bidi-xetex-xepersian.def>
 %<*extreport-xetex-xepersian.def>
 %\fi
 % \section{File \texttt{extreport-xetex-xepersian.def}}
@@ -1969,11 +1969,11 @@ by Vafa Khalighi.
 %    \end{macrocode}
 % \iffalse
 %</fancyref-xetex-xepersian.def>
-%<*footnote-xetex-xepersian.def>
+%<*footnote-xetex-bidi-xetex-xepersian.def>
 %\fi
-% \section{File \texttt{footnote-xetex-xepersian.def}}
+% \section{File \texttt{footnote-xetex-bidi-xetex-xepersian.def}}
 %    \begin{macrocode}
-\ProvidesFile{footnote-xetex-xepersian.def}[2017/08/09 v0.6 xepersian adaptations for footnotes for XeTeX engine]
+\ProvidesFile{footnote-xetex-bidi-xetex-xepersian.def}[2017/08/09 v0.6 xepersian adaptations for footnotes for XeTeX engine]
 
 \renewcommand*{\bidi@@footnotetext@font}{\footnotesize\if@RTL@footnote\else\resetlatinfont\fi} 
 
@@ -1983,7 +1983,7 @@ by Vafa Khalighi.
     
 %    \end{macrocode}
 % \iffalse
-%</footnote-xetex-xepersian.def>
+%</footnote-xetex-bidi-xetex-xepersian.def>
 %<*framed-xetex-xepersian.def>
 %\fi
 % \section{File \texttt{framed-xetex-xepersian.def}}
@@ -3431,7 +3431,8 @@ U+003E U+003E <> U+00BB ; >> -> RIGHT POINTING GUILLEMET
 %\fi
 % \section{File \texttt{tocloft-xetex-xepersian.def}}
 %    \begin{macrocode}
-\ProvidesFile{tocloft-xetex-xepersian.def}[2010/07/25 v0.1 xepersian adaptations for tocloft package for XeTeX engine]
+\ProvidesFile{tocloft-xetex-xepersian.def}[2025/02/23 v0.2 xepersian adaptations for tocloft package for XeTeX engine]
+\IfClassLoadedT{memoir}{\endinput}
 \renewcommand*{\cftchapname}{\if@RTL فصل\else chapter\fi}
 \renewcommand*{\cftsecname}{\if@RTL قسمت\else section\fi}
 \renewcommand*{\cftsubsecname}{\if@RTL زیرقسمت\else subsection\fi}
@@ -4848,9 +4849,11 @@ number is 999,999,999.}%
 \PackageError{xepersian}{You have not specified any font\MessageBreak
  for the main Persian text}{Use `\settextfont' to load a font.}%
 }{}}
-\@ifdefinitionfileloaded{footnote-xetex-bidi}{\input{footnote-xetex-xepersian.def}}{}
 
-\@ifpackageloaded{tocloft}{\@ifclassloaded{memoir}{}{\input{tocloft-xetex-xepersian.def}}}{}
+\ApplyPatchToFile{%
+  footnote-xetex-bidi, %
+  extrafootnotefeatures-xetex-bidi %
+}[xepersian]
 
 \ApplyPatchToClasses{%
   article, %
@@ -4898,11 +4901,10 @@ number is 999,999,999.}%
   natbib, %
   soul, %
   tkz-linknodes, %
+  tocloft, %
   url, %
   varioref %
 }[xepersian]
-
-\@ifdefinitionfileloaded{extrafootnotefeatures-xetex-bidi}{\input{extrafootnotefeatures-xetex-xepersian.def}}{}
 
 \newtoks\xepersian@toks
 \def\xepersian@tempa#1{%
