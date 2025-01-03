@@ -31,7 +31,7 @@ also appear in the Discussions space under the Announcements
 category.
   
   
-Current version release date: 2025/02/23
+Current version release date: 2025/01/03
 ___________________________________________
 Vafa Khalighi
 
@@ -244,7 +244,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{0}
+%% \CheckSum{10851}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -2160,7 +2160,7 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{localize-xetex-xepersian.def}}
 %    \begin{macrocode}
-\ProvidesFile{localize-xetex-xepersian.def}[2022/06/06 v0.2c Persian localization of LaTeX2e for XeTeX engine]
+\ProvidesFile{localize-xetex-xepersian.def}[2025/01/03 v0.2d Persian localization of LaTeX2e for XeTeX engine]
 \newcommand{\makezwnjletter}{\catcode`‌=11\relax}
 \makezwnjletter
 \newcommand*{\eqcommand}[2]{\if@bidi@csprimitive{#2}{\bidi@csletcs{#1}{#2}}{\bidi@csdefcs{#1}{#2}}}
@@ -2170,15 +2170,16 @@ by Vafa Khalighi.
   \expandafter\let\csname #1\expandafter\endcsname\csname #2\endcsname
   \expandafter\let\csname end#1\expandafter\endcsname\csname end#2\endcsname
 }
-\@ifpackageloaded{keyval}{%
+\ApplyPatchCodeToPackage{keyval}{%
 \newcommand*\keyval@eq@alias@key[4][KV]{%
   \bidi@csletcs{#1@#2@#3}{#1@#2@#4}%
   \bidi@csletcs{#1@#2@#3@default}{#1@#2@#4@default}}%
-}{\@ifpackageloaded{xkeyval}{%
+}
+\ApplyPatchCodeToPackage{xkeyval}{%
 \newcommand*\keyval@eq@alias@key[4][KV]{%
   \bidi@csletcs{#1@#2@#3}{#1@#2@#4}%
   \bidi@csletcs{#1@#2@#3@default}{#1@#2@#4@default}}%
-}{}}
+}
 \input{latex-localize-commands-xetex-xepersian.def}
 \input{xepersian-localize-commands-xetex-xepersian.def}
 \input{latex-localize-environments-xetex-xepersian.def}
@@ -2296,7 +2297,7 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{latex-localize-misc-xetex-xepersian.def}}
 %    \begin{macrocode}
-\ProvidesFile{latex-localize-misc-xetex-xepersian.def}[2012/01/01 v0.2 miscellaneous Persian localization of LaTeX2e for XeTeX engine]
+\ProvidesFile{latex-localize-misc-xetex-xepersian.def}[2025/01/03 v0.3 miscellaneous Persian localization of LaTeX2e for XeTeX engine]
 \تر\گرجدید#1{%
 \شمار@\نویسه‌ویژه     \نویسه‌ویژه\من@ا
  \بگذار#1\گرنادرست
@@ -2324,7 +2325,7 @@ by Vafa Khalighi.
 \بگذار\ازنو=\رگ
 
 
-\@ifdefinitionfileloaded{latex-xetex-bidi}{%
+\ApplyPatchCodeToFile{latex-xetex-bidi}{%
 \def\@xfloat #1[#2]{%
   \@nodocument
   \def \@captype {#1}%
@@ -2466,8 +2467,8 @@ by Vafa Khalighi.
                     \if #1پ3    \else          \z@ \@preamerr 0\fi
   \fi  \fi  \fi  \fi  \fi  \fi \fi \fi \fi \fi
 \fi}%
-}{}
-\@ifdefinitionfileloaded{array-xetex-bidi}{%
+}
+\ApplyPatchCodeToFile{array-xetex-bidi}{%
 \def\@testpach{\@chclass
  \ifnum \@lastchclass=6 \@ne \@chnum \@ne \else
   \ifnum \@lastchclass=7 5 \else
@@ -2499,8 +2500,8 @@ by Vafa Khalighi.
     \if \@nextchar ز5 \else
    \z@ \@chclass \z@ \@preamerr \z@ \fi \fi \fi \fi \fi \fi \fi
    \fi \fi  \fi  \fi  \fi  \fi  \fi \fi \fi \fi \fi \fi \fi \fi \fi}%
-}{}
-\@ifdefinitionfileloaded{arydshln-xetex-bidi}{
+}
+\ApplyPatchCodeToFile{arydshln-xetex-bidi}{
 \ifadl@usingarypkg
 \def\@testpach{\@chclass
  \ifnum \@lastchclass=6 \@ne \@chnum \@ne \else
@@ -2589,8 +2590,8 @@ by Vafa Khalighi.
 \def\adl@class@start{6}
 \def\adl@class@iiiorvii{3}
 \fi
-}{}
-\@ifdefinitionfileloaded{tabulary-xetex-bidi}{%
+}
+\ApplyPatchCodeToFile{tabulary-xetex-bidi}{%
 \def\@testpach{\@chclass
  \ifnum \@lastchclass=6 \@ne \@chnum \@ne \else
   \ifnum \@lastchclass=7 5 \else
@@ -2630,8 +2631,8 @@ by Vafa Khalighi.
   \if \@nextchar ز5 \else
    \z@ \@chclass \z@ \@preamerr \z@ \fi \fi \fi \fi\fi \fi \fi\fi \fi \fi \fi \fi \fi \fi \fi \fi
      \fi  \fi  \fi  \fi  \fi  \fi \fi \fi \fi \fi \fi \fi \fi \fi}%
-}{}
-\@ifdefinitionfileloaded{float-xetex-bidi}{%
+}
+\ApplyPatchCodeToFile{float-xetex-bidi}{%
 \let\@float@Hx\@xfloat
 \def\@xfloat#1[{\@ifnextchar{H}{\@float@HH{#1}[}{\@ifnextchar{آ}{\@float@آآ{#1}[}{\@float@Hx{#1}[}}}
 \def\@float@HH#1[H]{%
@@ -2654,7 +2655,7 @@ by Vafa Khalighi.
     \vbox\bgroup \hsize\columnwidth \@parboxrestore
       \@floatboxreset \@setnobreak
   \ignorespaces}
-}{}
+}
 \begingroup \catcode `|=0 \catcode `[= 1
 \catcode`]=2 \catcode `\{=12 \catcode `\}=12
 \catcode`\\=12 |gdef|@x@xepersian@localize@verbatim#1\پایان{همانطورکه‌هست}[#1|پایان[همانطورکه‌هست]]
@@ -2895,13 +2896,13 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{packages-localize-xetex-xepersian.def}}
 %    \begin{macrocode}
-\آماده‌سازی‌پرونده{packages-localize-xetex-xepersian.def}[2013/04/24 v0.2 localizing LaTeX2e Packages for XeTeX engine]
+\آماده‌سازی‌پرونده{packages-localize-xetex-xepersian.def}[2025/01/03 v0.3 localizing LaTeX2e Packages for XeTeX engine]
 \@گرسبک‌فراخوانی‌شده{color}{\ورودی{color-localize-xetex-xepersian.def}}{}
-\@ifpackageloaded{multicol}{%
+\ApplyPatchCodeToPackage{multicol}{%
 \newenvironment{چندستونی‌ها}{\begin{multicols}}{\end{multicols}}%
 \newenvironment{چندستونی‌ها*}{\begin{multicols*}}{\end{multicols*}}%
-}{}
-\@ifpackageloaded{verbatim}{%
+}
+\ApplyPatchCodeToPackage{verbatim}{%
 \begingroup
  \vrb@catcodes
  \lccode`\!=`\\ \lccode`\[=`\{ \lccode`\]=`\}
@@ -2987,21 +2988,20 @@ by Vafa Khalighi.
 \@namedef{همانطورکه‌هست*}{\begingroup\@verbatim\xepersian@localize@verbatim@start}
 \def\endهمانطورکه‌هست{\endtrivlist\endgroup\@doendpe}
 \expandafter\let\csname endهمانطورکه‌هست*\endcsname =\endهمانطورکه‌هست
-}{}
+}
 \ExplSyntaxOn
 \AtBeginDocument{
   \xepersian_localize_patch_verbatim:
 }
 \cs_set:Npn \xepersian_localize_patch_verbatim: {
-  \@ifpackageloaded{verbatim}{
+  \ApplyPatchCodeToPackage{verbatim}{
     \cs_set:cpn {همانطورکه‌هست*} {
       \group_begin: \@verbatim \fontspec_print_visible_spaces: \xepersian@localize@verbatim@start
     }
-  }{
   }
 }
 \ExplSyntaxOff
-\@ifpackageloaded{graphicx}{%
+\ApplyPatchCodeToPackage{graphicx}{%
 \def\Gin@boolkey#1#2{%
 \expandafter\@ifdefinable  \csname Gin@#2درست\endcsname{%
 \expandafter\let\csname Gin@#2درست\expandafter\endcsname\csname Gin@#2true\endcsname}%
@@ -3042,7 +3042,7 @@ by Vafa Khalighi.
 \معادل@کلید{Grot}{طول}{x}
 \معادل@کلید{Grot}{عرض}{y}
 \معادل@کلید{Grot}{واحد}{units}
-}{}
+}
 %    \end{macrocode}
 % \iffalse
 %</packages-localize-xetex-xepersian.def>
@@ -3431,7 +3431,7 @@ U+003E U+003E <> U+00BB ; >> -> RIGHT POINTING GUILLEMET
 %\fi
 % \section{File \texttt{tocloft-xetex-xepersian.def}}
 %    \begin{macrocode}
-\ProvidesFile{tocloft-xetex-xepersian.def}[2025/02/23 v0.2 xepersian adaptations for tocloft package for XeTeX engine]
+\ProvidesFile{tocloft-xetex-xepersian.def}[2025/01/03 v0.2 xepersian adaptations for tocloft package for XeTeX engine]
 \IfClassLoadedT{memoir}{\endinput}
 \renewcommand*{\cftchapname}{\if@RTL فصل\else chapter\fi}
 \renewcommand*{\cftsecname}{\if@RTL قسمت\else section\fi}
@@ -3523,7 +3523,7 @@ U+003E U+003E <> U+00BB ; >> -> RIGHT POINTING GUILLEMET
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
 \def\xepersian@version{25.9}
-\def\xepersiandate{2025/02/23}
+\def\xepersiandate{2025/01/03}
 \def\xepersian@releasename{Persian Gate}
 \def\xepersian@persian@@releasename{دربند پارس}
 \newcommand*{\xepersianreleasename}{\if@RTL\xepersian@persian@@releasename\else\xepersian@releasename\fi}
@@ -4535,7 +4535,7 @@ Persian typesetting in XeLaTeX]
 
 \newcommand*{\@xepersian@pdfcustomproperties}{%
   This is the xepersian package, Version \xepersian@version\space (Release \xepersian@releasename),
-  Released February 23, 2025. 
+  Released January 3, 2025. 
 }
 
 \newcommand\twocolumnstableofcontents{%
