@@ -23,7 +23,7 @@ mv xepersiantds.zip xepersian.tds.zip
 mv doc/xelatex/xepersian/*.pdf doc/xelatex/xepersian/*.py doc/xelatex/xepersian/README  doc/xelatex/xepersian/img source/xelatex/xepersian/*.ltx source/xelatex/xepersian/*.dtx xepersian
 zip -r xepersian xepersian.tds.zip xepersian
 rm -r doc tex source fonts xepersian
-rm *.aux *.glo *.gls *.hd *.idx *.ilg *.ind *.log *.out *.toc xepersian.tds.zip
+rm *.aux *.hd *.idx *.ilg *.ind *.log *.out *.toc xepersian.tds.zip
 
 
 
