@@ -5,7 +5,7 @@
 %<*readme>
 ____________________
 The XePersian package
-v26.0
+v26.1
 
 The xepersian package provides a convenient interface for 
 typesetting Persian and English texts in LaTeX, using XeTeX 
@@ -31,7 +31,7 @@ also appear in the Discussions space under the Announcements
 category.
   
   
-Current version release date: 2025/01/06
+Current version release date: 2025/01/08
 ___________________________________________
 Vafa Khalighi
 
@@ -167,7 +167,7 @@ by Vafa Khalighi.
 \documentclass{ltxdoc}
 \input{xepersian-doc-preamble.ltx}
 \hypersetup{%
-  pdftitle={Source documentation for version 26.0 of the XePersian
+  pdftitle={Source documentation for version 26.1 of the XePersian
                 package}%
 }
 \EnableCrossrefs
@@ -186,7 +186,7 @@ by Vafa Khalighi.
 % \GetFileInfo{\jobname.dtx}
 % \title{\textcolor{xepersianblue}{\Huge The \textsf{\XePersian} \textit{Package}}\\
 %\LARGE Persian for \LaTeXe, using {\XeTeX} engine\\[5pt]
-%\large Source documentation for \textcolor{xepersianblue}{version 26.0}}
+%\large Source documentation for \textcolor{xepersianblue}{version 26.1}}
 % \author{Vafa Khalighi\thanks{Thanks to the bidi-tex GitHub organization consisted of David Carlisle and other members of the  {\LaTeX} team for maintaining the package in the period 2018--2020.}}
 %\setcounter{page}{0}
 %\thispagestyle{empty}
@@ -196,7 +196,7 @@ by Vafa Khalighi.
 %\textcolor{xepersianblue}{\Huge The \textsf{\XePersian} \textit{Package}}
 %
 %\Large
-%Source documentation for \textcolor{xepersianblue}{version 26.0}}
+%Source documentation for \textcolor{xepersianblue}{version 26.1}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -3516,8 +3516,8 @@ U+003E U+003E <> U+00BB ; >> -> RIGHT POINTING GUILLEMET
 % \section{File \texttt{xepersian.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\xepersian@version{26.0}
-\def\xepersiandate{2025/01/06}
+\def\xepersian@version{26.1}
+\def\xepersiandate{2025/01/08}
 \def\xepersian@releasename{Persian Gate}
 \def\xepersian@persian@@releasename{دربند پارس}
 \newcommand*{\xepersianreleasename}{\if@RTL\xepersian@persian@@releasename\else\xepersian@releasename\fi}
@@ -4529,7 +4529,7 @@ Persian typesetting in XeLaTeX]
 
 \newcommand*{\@xepersian@pdfcustomproperties}{%
   This is the xepersian package, Version \xepersian@version\space (Release \xepersian@releasename),
-  Released January 6, 2025. 
+  Released January 8, 2025. 
 }
 
 \newcommand\twocolumnstableofcontents{%
@@ -5877,7 +5877,7 @@ indexblock environment may only appear inside frontpage environment.
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{xepersian-mathdigitspec}
-  [2025/01/01 v1.2.1 Unicode Persian math digits in XeLaTeX]
+  [2025/01/08 v1.2.2 Unicode Persian math digits in XeLaTeX]
 \def\new@mathgroup{\alloc@8\mathgroup\chardef\@cclvi}
 \let\newfam\new@mathgroup
 \def\select@group#1#2#3#4{%
@@ -6131,26 +6131,26 @@ indexblock environment may only appear inside frontpage environment.
 \mathchardef\decimalseparator@point="013A
 %{%
 % \catcode`\.=\active
-% \gdef.{\begingroup\obeyspaces\futurelet\@let@token\decimalseparator@pointcheck}}
+% \gdef.{\begingroup\obeyspaces\futurelet\@let@decimalsep@token\decimalseparator@pointcheck}}
 \bgroup
   \uccode`\~`\.%
   \uppercase{%
 \egroup
-  \def~}{\begingroup\obeyspaces\futurelet\@let@token\decimalseparator@pointcheck}
+  \def~}{\begingroup\obeyspaces\futurelet\@let@decimalsep@token\decimalseparator@pointcheck}
 \def\decimalseparator@pointcheck{\decimalseparator@check\MathDecimalSeparator\decimalseparator@point}
 \def\decimalseparator@check#1#2{%
-  \ifx\@let@token1\endgroup#1\else
-    \ifx\@let@token2\endgroup#1\else
-      \ifx\@let@token3\endgroup#1\else
-        \ifx\@let@token4\endgroup#1\else
-          \ifx\@let@token5\endgroup#1\else
-            \ifx\@let@token6\endgroup#1\else
-              \ifx\@let@token7\endgroup#1\else
-                \ifx\@let@token8\endgroup#1\else
-                  \ifx\@let@token9\endgroup#1\else
-                    \ifx\@let@token0\endgroup#1\else
-                     \ifx\@let@token\dot\endgroup#1\else
-                       \ifx\@let@token\overline\endgroup#1\else
+  \ifx\@let@decimalsep@token1\endgroup#1\else
+    \ifx\@let@decimalsep@token2\endgroup#1\else
+      \ifx\@let@decimalsep@token3\endgroup#1\else
+        \ifx\@let@decimalsep@token4\endgroup#1\else
+          \ifx\@let@decimalsep@token5\endgroup#1\else
+            \ifx\@let@decimalsep@token6\endgroup#1\else
+              \ifx\@let@decimalsep@token7\endgroup#1\else
+                \ifx\@let@decimalsep@token8\endgroup#1\else
+                  \ifx\@let@decimalsep@token9\endgroup#1\else
+                    \ifx\@let@decimalsep@token0\endgroup#1\else
+                     \ifx\@let@decimalsep@token\dot\endgroup#1\else
+                       \ifx\@let@decimalsep@token\overline\endgroup#1\else
                          \endgroup#2%
                        \fi
                     \fi
