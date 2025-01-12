@@ -5,10 +5,9 @@ Persian and English documents with LaTeX, using the XeTeX engine.
 The package includes adaptations for use with many other commonly-used 
 packages.
 
-The official versions of the package are released on [CTAN](https://ctan.org/pkg/xepersian).
-
-## The Name of the Game
 The name `xepersian`is derived from the words **_experience_** and **_persian_** and captures my philosophy of writing the package for **_the best Persian typesetting experience in TeX_**.
+
+The official versions of the package are released on [CTAN](https://ctan.org/pkg/xepersian).
 
 ## Using the Package
 The following example illustrates how the package can be used.
