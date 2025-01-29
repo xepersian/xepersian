@@ -3145,66 +3145,91 @@ local otf = fonts.handlers.otf
 local registerotffeature = otf.features.register
 local addotffeature = otf.addfeature
 
-local persiandigits = {
-  type = "substitution",
-  order = {"persiandigits"},
-  prepend = true,
-  data = {
-    [0x0030] = 0x06F0,
-    [0x0031] = 0x06F1,
-    [0x0032] = 0x06F2,
-    [0x0033] = 0x06F3,
-    [0x0034] = 0x06F4,
-    [0x0035] = 0x06F5,
-    [0x0036] = 0x06F6,
-    [0x0037] = 0x06F7,
-    [0x0038] = 0x06F8,
-    [0x0039] = 0x06F9
-  }
-}
-
-local persianpuncts = {
-  type = "substitution",
-  order = {"persianpuncts"},
-  prepend = true,
-  data = {
-    [0x002C] = 0x060C, -- comma ­> arabic comma
-    [0x003F] = 0x061F, -- question mark -> arabic qm
-    [0x003B] = 0x061B, -- semicolon -> arabic semicolon
-    [0x0027] = 0x2019, -- ' -> right single quote
-    [0x0022] = 0x201D, -- " -> right double quote
-    [0x0060] = 0x2018 -- ` -> left single quote
-  }
-}
-
 local persiantexlig = {
-  type = "ligature",
-  order = {"persiantexlig"},
-  prepend = true,
-  data = {
-    -- ligatures from Knuth's original CMR fonts
-    [0x2013] = {0x002D, 0x002D}, -- -- -> en dash
-    [0x2014] = {0x002D, 0x002D, 0x002D}, -- --- -> em dash
-    [0x201D] = {0x0027, 0x0027}, -- '' -> right double quote
-    [0x201C] = {0x0060, 0x0060}, -- `` -> left double quote
-    [0x00A1] = {0x0021, 0x0060}, -- !` -> inverted exclam
-    [0x00BF] = {0x003F, 0x0060}, -- ?` -> inverted question
-    -- additions supported in T1 encoding
-    [0x201E] = {0x002C, 0x002C}, -- ,, -> DOUBLE LOW-9 QUOTATION MARK
-    [0x00AB] = {0x003C, 0x003C}, -- << -> LEFT POINTING GUILLEMET
-    [0x00BB] = {0x003E, 0x003E} -- >> -> RIGHT POINTING GUILLEMET
+  {
+    type = "substitution",
+    order = {"persiantexlig"},
+    prepend = true,
+    data = {
+      [0x0030] = 0x06F0,
+      [0x0031] = 0x06F1,
+      [0x0032] = 0x06F2,
+      [0x0033] = 0x06F3,
+      [0x0034] = 0x06F4,
+      [0x0035] = 0x06F5,
+      [0x0036] = 0x06F6,
+      [0x0037] = 0x06F7,
+      [0x0038] = 0x06F8,
+      [0x0039] = 0x06F9,
+      [0x002C] = 0x060C, -- comma ­> arabic comma
+      [0x003F] = 0x061F, -- question mark -> arabic qm
+      [0x003B] = 0x061B, -- semicolon -> arabic semicolon
+      [0x0027] = 0x2019, -- ' -> right single quote
+      [0x0022] = 0x201D, -- " -> right double quote
+      [0x0060] = 0x2018 -- ` -> left single quote
+  }
+  },
+  {
+    type = "ligature",
+    order = {"persiantexlig"},
+    prepend = true,
+    data = {
+      -- ligatures from Knuth's original CMR fonts
+      [0x2013] = {0x002D, 0x002D}, -- -- -> en dash
+      [0x2014] = {0x002D, 0x002D, 0x002D}, -- --- -> em dash
+      [0x201D] = {0x0027, 0x0027}, -- '' -> right double quote
+      [0x201C] = {0x0060, 0x0060}, -- `` -> left double quote
+      [0x00A1] = {0x0021, 0x0060}, -- !` -> inverted exclam
+      [0x00BF] = {0x003F, 0x0060}, -- ?` -> inverted question
+      -- additions supported in T1 encoding
+      [0x201E] = {0x002C, 0x002C}, -- ,, -> DOUBLE LOW-9 QUOTATION MARK
+      [0x00AB] = {0x003C, 0x003C}, -- << -> LEFT POINTING GUILLEMET
+      [0x00BB] = {0x003E, 0x003E} -- >> -> RIGHT POINTING GUILLEMET
+  }
   }
 }
 
-addotffeature("persianpuncts", persianpuncts) -- feature added last
-addotffeature("persiantexlig", persiantexlig) -- feature added second
-addotffeature("persiandigits" ,persiandigits) -- feature added first
+local persiantexlignonum = {
+  {
+    type = "substitution",
+    order = {"persiantexlignonum"},
+    prepend = true,
+    data = {
+      [0x002C] = 0x060C, -- comma ­> arabic comma
+      [0x003F] = 0x061F, -- question mark -> arabic qm
+      [0x003B] = 0x061B, -- semicolon -> arabic semicolon
+      [0x0027] = 0x2019, -- ' -> right single quote
+      [0x0022] = 0x201D, -- " -> right double quote
+      [0x0060] = 0x2018 -- ` -> left single quote
+  }
+  },
+  {
+    type = "ligature",
+    order = {"persiantexlig"},
+    prepend = true,
+    data = {
+      -- ligatures from Knuth's original CMR fonts
+      [0x2013] = {0x002D, 0x002D}, -- -- -> en dash
+      [0x2014] = {0x002D, 0x002D, 0x002D}, -- --- -> em dash
+      [0x201D] = {0x0027, 0x0027}, -- '' -> right double quote
+      [0x201C] = {0x0060, 0x0060}, -- `` -> left double quote
+      [0x00A1] = {0x0021, 0x0060}, -- !` -> inverted exclam
+      [0x00BF] = {0x003F, 0x0060}, -- ?` -> inverted question
+      -- additions supported in T1 encoding
+      [0x201E] = {0x002C, 0x002C}, -- ,, -> DOUBLE LOW-9 QUOTATION MARK
+      [0x00AB] = {0x003C, 0x003C}, -- << -> LEFT POINTING GUILLEMET
+      [0x00BB] = {0x003E, 0x003E} -- >> -> RIGHT POINTING GUILLEMET
+  }
+  }
+}
 
-registerotffeature {name = "persiandigits", description = "Persian digits"}
-registerotffeature {name = "persianpuncts", description = "Persian punctuations"}
-registerotffeature {name = "persiantexlig", description = "Persian ligatures"}
+addotffeature("persiantexlignonum", persiantexlignonum)
+addotffeature("persiantexlig", persiantexlig)
 
--- We need to do this for HarfBuzz too
+registerotffeature {name = "persiantexlig", description = "Persian TeX ligatures"}
+registerotffeature {name = "persiantexlignonum", description = "Persian TeX ligatures without numbers"}
+
+-- We implement persiantexlig and persiantexlignonum for HarfBuzz too
 local direct = node.direct
 local otfregister = fonts.constructors.features.otf.register
 
