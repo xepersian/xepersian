@@ -132,7 +132,7 @@ by Vafa Khalighi.
   \MetaPrefix ^^J%
   \MetaPrefix\space End of file `\outFileName'.%
 }
-\generate{\file{persian-tex-lig.lua}{\from{\jobname.dtx}{persian-tex-lig.lua}}}
+\generate{\file{persian-tex-ligs.lua}{\from{\jobname.dtx}{persian-tex-ligs.lua}}}
 \let\MetaPrefix\DoubleperCent
 \usepostamble\org@postamble
 \generate{\file{rapport1-xetex-xepersian.def}{\from{\jobname.dtx}{table,rapport1-xetex-xepersian.def}}}
@@ -3137,9 +3137,9 @@ U+003E U+003E <> U+00BB ; >> -> RIGHT POINTING GUILLEMET
 %    \end{macrocode}
 % \iffalse
 %</persian-tex-text-nonumbers.map>
-%<*persian-tex-lig.lua>
+%<*persian-tex-ligs.lua>
 %\fi
-% \section{File \texttt{persian-tex-lig.lua}}
+% \section{File \texttt{persian-tex-ligs.lua}}
 %    \begin{macrocode}
 local otf = fonts.handlers.otf
 local registerotffeature = otf.features.register
@@ -3353,7 +3353,7 @@ otfregister {
 }
 %    \end{macrocode}
 % \iffalse
-%</persian-tex-lig.lua>
+%</persian-tex-ligs.lua>
 %<*rapport1-xetex-xepersian.def>
 %\fi
 % \section{File \texttt{rapport1-xetex-xepersian.def}}
