@@ -3196,9 +3196,9 @@ local persianligatures = {
   }
 }
 
-addotffeature("persianligatures", persianligatures) 
-addotffeature("persianpunctuations", persianpunctuations)
-addotffeature("persiandigits" ,persiandigits) 
+addotffeature("persianpunctuations", persianpunctuations) -- feature added last
+addotffeature("persianligatures", persianligatures) -- feature added second
+addotffeature("persiandigits" ,persiandigits) -- feature added first
 
 registerotffeature {name = "persiandigits", description = "Persian digits"}
 registerotffeature {name = "persianpunctuations", description = "Persian punctuations"}
@@ -3286,6 +3286,44 @@ otfregister {
   processors = {
     position=1,
     plug = persianligaturesprocessor,
+  },
+}
+
+local function persianligaturesnonumbersprocessor(head, font)
+  local n = head
+  while n do
+    local c, id = is_char(n, font)
+    local persianpunct = persianpunctuations[c]
+    if persianpunct then
+      setchar(n, persianpunct)
+    elseif id == disc_t then
+      local pre, post, replace = getdisc(n)
+      persianligaturesnonumbersprocessor(pre, font)
+      persianligaturesnonumbersprocessor(post, font)
+      persianligaturesnonumbersprocessor(replace, font)
+    end
+    n = getnext(n)
+  end
+end
+
+otfregister {
+  name = 'persianligaturesnonumbers',
+  description = 'Persian TeX ligatures without numbers',
+  default = false,
+  manipulators = {
+    plug = function(tfmdata, _, value)
+      local characters = tfmdata.characters
+      for codepoint, ligatures in next, persianligatures do
+        local char = characters[codepoint]
+        if char then
+          char.ligatures = ligatures
+        end
+      end
+    end,
+  },
+  processors = {
+    position=1,
+    plug = persianligaturesnonumbersprocessor,
   },
 }
 %    \end{macrocode}
