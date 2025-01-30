@@ -3951,24 +3951,6 @@ Persian typesetting in XeLaTeX]
 ]{bidi}
 \newcommand*{\xepersianversion}
   {\ensuremath\xepersian@version}
-\newcommand*{\IfxepersianPackageVersionLater}[1]{%
-  \ifdim\xepersian@version pt > #1 pt %
-    \expandafter\@firstoftwo
-  \else
-    \expandafter\@secondoftwo
-  \fi}
-\newcommand*{\IfxepersianPackageVersionBefore}[1]{%
-  \ifdim\xepersian@version pt < #1 pt %
-    \expandafter\@firstoftwo
-  \else
-    \expandafter\@secondoftwo
-  \fi}
-\newcommand*{\IfxepersianPackageVersion}[1]{%
-  \ifdim\xepersian@version pt = #1 pt %
-    \expandafter\@firstoftwo
-  \else
-    \expandafter\@secondoftwo
-  \fi}  
 \def\prq{«}
 \def\plq{»}
 \def\xepersian@cmds@temp#1{%
