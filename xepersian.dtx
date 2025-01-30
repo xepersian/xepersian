@@ -5,7 +5,7 @@
 %<*readme>
 ____________________
 The XePersian package
-v26.2
+v26.3.1
 
 The xepersian package provides a convenient interface for 
 typesetting Persian and English texts in LaTeX, using XeTeX 
@@ -31,7 +31,7 @@ also appear in the Discussions space under the Announcements
 category.
   
   
-Current version release date: 2025/01/16
+Current version release date: 2026/03/01
 ___________________________________________
 Vafa Khalighi
 
@@ -173,7 +173,7 @@ by Vafa Khalighi.
 \documentclass{ltxdoc}
 \input{xepersian-doc-preamble.ltx}
 \hypersetup{%
-  pdftitle={Source documentation for version 26.2 of the XePersian
+  pdftitle={Source documentation for version 26.3.1 of the XePersian
                 package}%
 }
 \EnableCrossrefs
@@ -192,7 +192,7 @@ by Vafa Khalighi.
 % \GetFileInfo{\jobname.dtx}
 % \title{\textcolor{xepersianblue}{\Huge The \textsf{\XePersian} \textit{Package}}\\
 %\LARGE Persian for \LaTeXe, using {\XeTeX} engine\\[5pt]
-%\large Source documentation for \textcolor{xepersianblue}{version 26.2}}
+%\large Source documentation for \textcolor{xepersianblue}{version 26.3.1}}
 % \author{Vafa Khalighi\thanks{Thanks to the bidi-tex GitHub organization consisted of David Carlisle and other members of the  {\LaTeX} team for maintaining the package in the period 2018--2020.}}
 %\setcounter{page}{0}
 %\thispagestyle{empty}
@@ -202,7 +202,7 @@ by Vafa Khalighi.
 %\textcolor{xepersianblue}{\Huge The \textsf{\XePersian} \textit{Package}}
 %
 %\Large
-%Source documentation for \textcolor{xepersianblue}{version 26.2}}
+%Source documentation for \textcolor{xepersianblue}{version 26.3.1}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -3739,8 +3739,8 @@ otfregister {
 % \section{File \texttt{xepersian.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\xepersian@version{26.2}
-\def\xepersiandate{2025/01/16}
+\def\xepersian@version{26.3.1}
+\def\xepersiandate{2026/03/01}
 \def\xepersian@releasename{Persian Gate}
 \def\xepersian@persian@@releasename{دربند پارس}
 \newcommand*{\xepersianreleasename}{\if@RTL\xepersian@persian@@releasename\else\xepersian@releasename\fi}
@@ -4762,7 +4762,7 @@ Persian typesetting in XeLaTeX]
 
 \newcommand*{\@xepersian@pdfcustomproperties}{%
   This is the xepersian package, Version \xepersian@version\space (Release \xepersian@releasename),
-  Released January 16, 2025. 
+  Released March 1, 2026. 
 }
 
 \newcommand\twocolumnstableofcontents{%
@@ -6110,7 +6110,7 @@ indexblock environment may only appear inside frontpage environment.
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{xepersian-mathdigitspec}
-  [2025/01/08 v1.2.2 Unicode Persian math digits in XeLaTeX]
+  [2026/03/01 v1.2.3 Unicode Persian math digits]
 \def\new@mathgroup{\alloc@8\mathgroup\chardef\@cclvi}
 \let\newfam\new@mathgroup
 \def\select@group#1#2#3#4{%
@@ -6199,41 +6199,31 @@ indexblock environment may only appear inside frontpage environment.
 %\int_const:Nn \c_one_int { 1 }
 \NewDocumentCommand \new@mathbf { m } {
  \orig_mathbf:n {
-   \int_step_inline:nnnn { `0 } { \c_one_int } { `9 } {
-     \mathcode ##1 = \numexpr "100 * \symnew@mathbf@font@digits + ##1 \relax
-   }
+   \SetPersianMathDigits{new@mathbf@font@digits}
    #1
  }
 }
 \NewDocumentCommand \new@mathit { m } {
  \orig_mathit:n {
-   \int_step_inline:nnnn { `0 } { \c_one_int } { `9 } {
-     \mathcode ##1 = \numexpr "100 * \symnew@mathit@font@digits + ##1 \relax
-   }
+   \SetPersianMathDigits{new@mathit@font@digits}
    #1
  }
 }
 \NewDocumentCommand \new@mathrm { m } {
  \orig_mathrm:n {
-   \int_step_inline:nnnn { `0 } { \c_one_int } { `9 } {
-     \mathcode ##1 = \numexpr "100 * \symnew@mathrm@font@digits + ##1 \relax
-   }
+   \SetPersianMathDigits{new@mathrm@font@digits}
    #1
  }
 }
 \NewDocumentCommand \new@mathsf{ m } {
  \orig_mathsf:n {
-   \int_step_inline:nnnn { `0 } { \c_one_int } { `9 } {
-     \mathcode ##1 = \numexpr "100 * \symnew@mathsf@font@digits + ##1 \relax
-   }
+   \SetPersianMathDigits{new@mathsf@font@digits}
    #1
  }
 }
 \NewDocumentCommand \new@mathtt{ m } {
  \orig_mathtt:n {
-   \int_step_inline:nnnn { `0 } { \c_one_int } { `9 } {
-     \mathcode ##1 = \numexpr "100 * \symnew@mathtt@font@digits + ##1 \relax
-   }
+   \SetPersianMathDigits{new@mathtt@font@digits}
    #1
  }
 }
@@ -6294,6 +6284,20 @@ indexblock environment may only appear inside frontpage environment.
       06F9 , 066A , 066B
     } { #1 }                         
  }
+ 
+\NewDocumentCommand \SetPersianMathDigits { m }
+  {
+    \SetMathCode{`0}{\mathalpha}{#1}{`۰}
+    \SetMathCode{`1}{\mathalpha}{#1}{`۱}
+    \SetMathCode{`2}{\mathalpha}{#1}{`۲}
+    \SetMathCode{`3}{\mathalpha}{#1}{`۳}
+    \SetMathCode{`4}{\mathalpha}{#1}{`۴}
+    \SetMathCode{`5}{\mathalpha}{#1}{`۵}
+    \SetMathCode{`6}{\mathalpha}{#1}{`۶}
+    \SetMathCode{`7}{\mathalpha}{#1}{`۷}
+    \SetMathCode{`8}{\mathalpha}{#1}{`۸}
+    \SetMathCode{`9}{\mathalpha}{#1}{`۹}
+  }
 
 \DeclareDocumentCommand \setmathdigitfont { O{} m O{} }
   {
@@ -6302,7 +6306,7 @@ indexblock environment may only appear inside frontpage environment.
 \cs_new:Nn \__xepersian_main_setmathdigitfont:nn
  {
   \let\glb@currsize\relax
-  \fontspec_set_family:Nnn \g__xepersian_mathdigitsfamily_tl {Ligatures=PersianTeX,#1} {#2}
+  \fontspec_set_family:Nnn \g__xepersian_mathdigitsfamily_tl {#1} {#2}
   \__xepersian_setmathdigitfont_hook:nn {#1} {#2}
     \xepersian@PackageInfo{Defining the default Persian math digits font as '#2'}
   \DeclareSymbolFont{OPERATORS}   {\g_fontspec_encoding_tl}{\g__xepersian_mathdigitsfamily_tl} {m}{n}
@@ -6311,21 +6315,13 @@ indexblock environment may only appear inside frontpage environment.
   \DeclareSymbolFont{new@mathrm@font@digits}{\g_fontspec_encoding_tl}{\g__xepersian_mathdigitsfamily_tl}{m}{n}
   \__xepersian_mathdigitspec_char_not_exist_error:n { #2 }
   \def\persianmathdigits{%
-  \SetMathCode{`0}{\mathalpha}{OPERATORS}{`0}
-  \SetMathCode{`1}{\mathalpha}{OPERATORS}{`1}
-  \SetMathCode{`2}{\mathalpha}{OPERATORS}{`2}
-  \SetMathCode{`3}{\mathalpha}{OPERATORS}{`3}
-  \SetMathCode{`4}{\mathalpha}{OPERATORS}{`4}
-  \SetMathCode{`5}{\mathalpha}{OPERATORS}{`5}
-  \SetMathCode{`6}{\mathalpha}{OPERATORS}{`6}
-  \SetMathCode{`7}{\mathalpha}{OPERATORS}{`7}
-  \SetMathCode{`8}{\mathalpha}{OPERATORS}{`8}
-  \SetMathCode{`9}{\mathalpha}{OPERATORS}{`9}
-  \SetMathCode{`\%}{\mathbin}{OPERATORS}{`٪}
-  \SetMathCharDef{\persiandecimalseparator}{\mathord}{OPERATORS}{"066B}
-  \tl_set_eq:NN \mathbf \new@mathbf
-  \tl_set_eq:NN \mathit \new@mathit
-  \tl_set_eq:NN \mathrm \new@mathrm}
+    \SetPersianMathDigits{OPERATORS}
+    \SetMathCode{`\%}{\mathbin}{OPERATORS}{`٪}
+    \SetMathCharDef{\persiandecimalseparator}{\mathord}{OPERATORS}{`٫}
+    \tl_set_eq:NN \mathbf \new@mathbf
+    \tl_set_eq:NN \mathit \new@mathit
+    \tl_set_eq:NN \mathrm \new@mathrm
+  }
  }
 
 \cs_set_eq:NN \__xepersian_setmathdigitfont_hook:nn     \use_none:nn
@@ -6336,7 +6332,7 @@ indexblock environment may only appear inside frontpage environment.
   }
 \cs_new:Nn \__xepersian_main_setmathsfdigitfont:nn
  {
-  \fontspec_set_family:Nnn \g__xepersian_mathsfdigitfamily_tl {Ligatures=PersianTeX,#1} {#2}
+  \fontspec_set_family:Nnn \g__xepersian_mathsfdigitfamily_tl {#1} {#2}
   \__xepersian_setmathsfdigitfont_hook:nn {#1} {#2}
       \DeclareSymbolFont{new@mathsf@font@digits}{\g_fontspec_encoding_tl}{\g__xepersian_mathsfdigitfamily_tl}{m}{n}
       \__xepersian_mathdigitspec_char_not_exist_error:n { #2 }
@@ -6351,7 +6347,7 @@ indexblock environment may only appear inside frontpage environment.
   }
 \cs_new:Nn \__xepersian_main_setmathttdigitfont:nn
  {
-  \fontspec_set_family:Nnn \g__xepersian_mathttdigitfamily_tl {Ligatures=PersianTeX,#1} {#2}
+  \fontspec_set_family:Nnn \g__xepersian_mathttdigitfamily_tl {#1} {#2}
   \__xepersian_setmathttdigitfont_hook:nn {#1} {#2}
       \DeclareSymbolFont{new@mathtt@font@digits}{\g_fontspec_encoding_tl}{\g__xepersian_mathttdigitfamily_tl}{m}{n}
       \__xepersian_mathdigitspec_char_not_exist_error:n { #2 }
@@ -6456,9 +6452,7 @@ indexblock environment may only appear inside frontpage environment.
 }
 
 \NewDocumentCommand \SwitchToPersianMathDigits {  } {
-  \int_step_inline:nnnn { `0 } { \c_one_int } { `9 } {
-    \SetMathCode{##1}{\mathalpha}{OPERATORS}{##1}
-  }
+  \SetPersianMathDigits{OPERATORS}
   \SetMathCode{`\%}{\mathbin}{OPERATORS}{`٪}
   \tl_set_eq:NN \MathDecimalSeparator \orig_MathDecimalSeparator
   \tl_set_eq:NN \mathbf \new@mathbf
