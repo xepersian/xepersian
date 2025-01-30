@@ -6191,43 +6191,6 @@ indexblock environment may only appear inside frontpage environment.
 \newcommand\SetMathCharDef[4]{%
   \Umathchardef#1="\mathchar@type#2 \csname sym#3\endcsname #4\relax}
 \ExplSyntaxOn
-\cs_new_eq:NN \orig_mathbf:n \mathbf
-\cs_new_eq:NN \orig_mathit:n \mathit
-\cs_new_eq:NN \orig_mathrm:n \mathrm
-\cs_new_eq:NN \orig_mathsf:n \mathsf
-\cs_new_eq:NN \orig_mathtt:n \mathtt
-%\int_const:Nn \c_one_int { 1 }
-\NewDocumentCommand \new@mathbf { m } {
- \orig_mathbf:n {
-   \SetPersianMathDigitsCode{new@mathbf@font@digits}
-   #1
- }
-}
-\NewDocumentCommand \new@mathit { m } {
- \orig_mathit:n {
-   \SetPersianMathDigitsCode{new@mathit@font@digits}
-   #1
- }
-}
-\NewDocumentCommand \new@mathrm { m } {
- \orig_mathrm:n {
-   \SetPersianMathDigitsCode{new@mathrm@font@digits}
-   #1
- }
-}
-\NewDocumentCommand \new@mathsf{ m } {
- \orig_mathsf:n {
-   \SetPersianMathDigitsCode{new@mathsf@font@digits}
-   #1
- }
-}
-\NewDocumentCommand \new@mathtt{ m } {
- \orig_mathtt:n {
-   \SetPersianMathDigitsCode{new@mathtt@font@digits}
-   #1
- }
-}
-
 \cs_new:Npn \__xepersian_mathdigitspec_error:nxx    { \msg_error:nnxx    {xepersian-mathdigitspec} }
 \cs_new:Nn \__xepersian_mathdigitspec_msg_new:nnnn
   { \msg_new:nnxx {#1} {#2} { \tl_trim_spaces:n {#3} } { \tl_trim_spaces:n {#4} } }
@@ -6316,11 +6279,11 @@ indexblock environment may only appear inside frontpage environment.
   \__xepersian_mathdigitspec_char_not_exist_error:n { #2 }
   \def\persianmathdigits{%
     \SetPersianMathDigitsCode{OPERATORS}
+    \SetPersianMathDigitsCode{new@mathbf@font@digits}
+    \SetPersianMathDigitsCode{new@mathit@font@digits}
+    \SetPersianMathDigitsCode{new@mathrm@font@digits}
     \SetMathCode{`\%}{\mathbin}{OPERATORS}{`٪}
     \SetMathCharDef{\persiandecimalseparator}{\mathord}{OPERATORS}{`٫}
-    \tl_set_eq:NN \mathbf \new@mathbf
-    \tl_set_eq:NN \mathit \new@mathit
-    \tl_set_eq:NN \mathrm \new@mathrm
   }
  }
 
@@ -6336,7 +6299,7 @@ indexblock environment may only appear inside frontpage environment.
   \__xepersian_setmathsfdigitfont_hook:nn {#1} {#2}
       \DeclareSymbolFont{new@mathsf@font@digits}{\g_fontspec_encoding_tl}{\g__xepersian_mathsfdigitfamily_tl}{m}{n}
       \__xepersian_mathdigitspec_char_not_exist_error:n { #2 }
-    \def\persianmathsfdigits{\tl_set_eq:NN \mathsf \new@mathsf}
+    \def\persianmathsfdigits{\SetPersianMathDigitsCode{new@mathsf@font@digits}}
  }
 
 \cs_set_eq:NN \__xepersian_setmathsfdigitfont_hook:nn     \use_none:nn
@@ -6351,7 +6314,7 @@ indexblock environment may only appear inside frontpage environment.
   \__xepersian_setmathttdigitfont_hook:nn {#1} {#2}
       \DeclareSymbolFont{new@mathtt@font@digits}{\g_fontspec_encoding_tl}{\g__xepersian_mathttdigitfamily_tl}{m}{n}
       \__xepersian_mathdigitspec_char_not_exist_error:n { #2 }
-    \def\persianmathttdigits{\tl_set_eq:NN \mathtt \new@mathtt}
+    \def\persianmathttdigits{\SetPersianMathDigitsCode{new@mathtt@font@digits}}
  }
 
 \cs_set_eq:NN \__xepersian_setmathttdigitfont_hook:nn     \use_none:nn
@@ -6444,22 +6407,17 @@ indexblock environment may only appear inside frontpage environment.
   }
   \SetMathCode{`\%}{\mathbin}{operators}{`\%}
   \tl_set_eq:NN \MathDecimalSeparator \DefaultMathDecimalSeparator
-  \tl_set_eq:NN \mathbf \orig_mathbf:n
-  \tl_set_eq:NN \mathit \orig_mathit:n
-  \tl_set_eq:NN \mathrm \orig_mathrm:n
-  \tl_set_eq:NN \mathsf \orig_mathsf:n
-  \tl_set_eq:NN \mathtt \orig_mathtt:n
 }
 
 \NewDocumentCommand \SwitchToPersianMathDigits {  } {
   \SetPersianMathDigitsCode{OPERATORS}
+  \SetPersianMathDigitsCode{new@mathbf@font@digits}
+  \SetPersianMathDigitsCode{new@mathit@font@digits}
+  \SetPersianMathDigitsCode{new@mathrm@font@digits}
+  \SetPersianMathDigitsCode{new@mathsf@font@digits}
+  \SetPersianMathDigitsCode{new@mathtt@font@digits}
   \SetMathCode{`\%}{\mathbin}{OPERATORS}{`٪}
   \tl_set_eq:NN \MathDecimalSeparator \orig_MathDecimalSeparator
-  \tl_set_eq:NN \mathbf \new@mathbf
-  \tl_set_eq:NN \mathit \new@mathit
-  \tl_set_eq:NN \mathrm \new@mathrm
-  \tl_set_eq:NN \mathsf \new@mathsf
-  \tl_set_eq:NN \mathtt \new@mathtt
 }
 \ExplSyntaxOff
 %    \end{macrocode}
