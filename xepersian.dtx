@@ -6199,31 +6199,31 @@ indexblock environment may only appear inside frontpage environment.
 %\int_const:Nn \c_one_int { 1 }
 \NewDocumentCommand \new@mathbf { m } {
  \orig_mathbf:n {
-   \SetPersianMathDigits{new@mathbf@font@digits}
+   \SetPersianMathDigitsCode{new@mathbf@font@digits}
    #1
  }
 }
 \NewDocumentCommand \new@mathit { m } {
  \orig_mathit:n {
-   \SetPersianMathDigits{new@mathit@font@digits}
+   \SetPersianMathDigitsCode{new@mathit@font@digits}
    #1
  }
 }
 \NewDocumentCommand \new@mathrm { m } {
  \orig_mathrm:n {
-   \SetPersianMathDigits{new@mathrm@font@digits}
+   \SetPersianMathDigitsCode{new@mathrm@font@digits}
    #1
  }
 }
 \NewDocumentCommand \new@mathsf{ m } {
  \orig_mathsf:n {
-   \SetPersianMathDigits{new@mathsf@font@digits}
+   \SetPersianMathDigitsCode{new@mathsf@font@digits}
    #1
  }
 }
 \NewDocumentCommand \new@mathtt{ m } {
  \orig_mathtt:n {
-   \SetPersianMathDigits{new@mathtt@font@digits}
+   \SetPersianMathDigitsCode{new@mathtt@font@digits}
    #1
  }
 }
@@ -6285,7 +6285,7 @@ indexblock environment may only appear inside frontpage environment.
     } { #1 }                         
  }
  
-\NewDocumentCommand \SetPersianMathDigits { m }
+\NewDocumentCommand \SetPersianMathDigitsCode { m }
   {
     \SetMathCode{`0}{\mathalpha}{#1}{`۰}
     \SetMathCode{`1}{\mathalpha}{#1}{`۱}
@@ -6315,7 +6315,7 @@ indexblock environment may only appear inside frontpage environment.
   \DeclareSymbolFont{new@mathrm@font@digits}{\g_fontspec_encoding_tl}{\g__xepersian_mathdigitsfamily_tl}{m}{n}
   \__xepersian_mathdigitspec_char_not_exist_error:n { #2 }
   \def\persianmathdigits{%
-    \SetPersianMathDigits{OPERATORS}
+    \SetPersianMathDigitsCode{OPERATORS}
     \SetMathCode{`\%}{\mathbin}{OPERATORS}{`٪}
     \SetMathCharDef{\persiandecimalseparator}{\mathord}{OPERATORS}{`٫}
     \tl_set_eq:NN \mathbf \new@mathbf
@@ -6452,7 +6452,7 @@ indexblock environment may only appear inside frontpage environment.
 }
 
 \NewDocumentCommand \SwitchToPersianMathDigits {  } {
-  \SetPersianMathDigits{OPERATORS}
+  \SetPersianMathDigitsCode{OPERATORS}
   \SetMathCode{`\%}{\mathbin}{OPERATORS}{`٪}
   \tl_set_eq:NN \MathDecimalSeparator \orig_MathDecimalSeparator
   \tl_set_eq:NN \mathbf \new@mathbf
