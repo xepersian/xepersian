@@ -148,7 +148,7 @@ by Vafa Khalighi.
 \generate{\file{varioref-xetex-xepersian.def}{\from{\jobname.dtx}{table,varioref-xetex-xepersian.def}}}
 \generate{\file{xepersian.sty}{\from{\jobname.dtx}{table,xepersian.sty}}}
 \generate{\file{xepersian-magazine.cls}{\from{\jobname.dtx}{table,xepersian-magazine.cls}}}
-\generate{\file{xepersian-mathdigitspec.sty}{\from{\jobname.dtx}{table,xepersian-mathdigitspec.sty}}}
+\generate{\file{unicode-persianmath.sty}{\from{\jobname.dtx}{table,unicode-persianmath.sty}}}
 \generate{\file{xepersian-multiplechoice.sty}{\from{\jobname.dtx}{table,xepersian-multiplechoice.sty}}}
 \generate{\file{xepersian-persiancal.sty}{\from{\jobname.dtx}{table,xepersian-persiancal.sty}}}
 %</batchfile>
@@ -3941,7 +3941,7 @@ Persian typesetting in XeLaTeX]
 \fi
 \RequirePackage{fontspec}
 \RequirePackage{xepersian-persiancal}
-\RequirePackage{xepersian-mathdigitspec}
+\RequirePackage{unicode-persianmath}
 \RequirePackage[%
   documentdirection=righttoleft,%
   tabledirection=righttoleft,%
@@ -6086,13 +6086,13 @@ indexblock environment may only appear inside frontpage environment.
 %    \end{macrocode}
 % \iffalse
 %</xepersian-magazine.cls>
-%<*xepersian-mathdigitspec.sty>
+%<*unicode-persianmath.sty>
 %\fi
-% \section{File \texttt{xepersian-mathdigitspec.sty}}
+% \section{File \texttt{unicode-persianmath.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesPackage{xepersian-mathdigitspec}
-  [2025/01/08 v1.2.2 Unicode Persian math digits in XeLaTeX]
+\ProvidesPackage{unicode-persianmath}
+  [2026/03/01 v1.2.3 Unicode Persian math]
 \def\new@mathgroup{\alloc@8\mathgroup\chardef\@cclvi}
 \let\newfam\new@mathgroup
 \def\select@group#1#2#3#4{%
@@ -6167,7 +6167,7 @@ indexblock environment may only appear inside frontpage environment.
   \tl_remove_once:Nn \@preamblecmds {\do#1}
  }
 \ExplSyntaxOff
-\newcommand\xepersian@PackageInfo[1]{\PackageInfo{xepersian-mathdigitspec}{#1}}
+\newcommand\xepersian@PackageInfo[1]{\PackageInfo{unicode-persianmath}{#1}}
 \newcommand\SetMathCode[4]{%
   \Umathcode#1="\mathchar@type#2 \csname sym#3\endcsname #4\relax}
 \newcommand\SetMathCharDef[4]{%
@@ -6220,11 +6220,11 @@ indexblock environment may only appear inside frontpage environment.
  }
 }
 
-\cs_new:Npn \__xepersian_mathdigitspec_error:nxx    { \msg_error:nnxx    {xepersian-mathdigitspec} }
+\cs_new:Npn \__xepersian_mathdigitspec_error:nxx    { \msg_error:nnxx    {unicode-persianmath} }
 \cs_new:Nn \__xepersian_mathdigitspec_msg_new:nnnn
   { \msg_new:nnxx {#1} {#2} { \tl_trim_spaces:n {#3} } { \tl_trim_spaces:n {#4} } }
 \char_set_catcode_space:n {32}
-\__xepersian_mathdigitspec_msg_new:nnnn {xepersian-mathdigitspec} {char-not-exist}
+\__xepersian_mathdigitspec_msg_new:nnnn {unicode-persianmath} {char-not-exist}
  {
   The font "#1" does not contain U+#2.
  }
@@ -6451,7 +6451,7 @@ indexblock environment may only appear inside frontpage environment.
 \ExplSyntaxOff
 %    \end{macrocode}
 % \iffalse
-%</xepersian-mathdigitspec.sty>
+%</unicode-persianmath.sty>
 %<*xepersian-multiplechoice.sty>
 %\fi
 % \section{File \texttt{xepersian-multiplechoice.sty}}
