@@ -12,15 +12,15 @@ teckit_compile persian-tex-text-nonumbers.map
 xelatex -shell-escape xepersian-doc.ltx
 xelatex -shell-escape xepersian-doc.ltx
 xelatex -shell-escape xepersian-doc.ltx
-mkdir -p doc/xelatex/xepersian fonts/misc/xetex/fontmapping/xepersian source/xelatex/xepersian tex/xelatex/xepersian 
+mkdir -p doc/latex/xepersian fonts/misc/xetex/fontmapping/xepersian source/latex/xepersian tex/latex/xepersian 
 mkdir xepersian
-mv *.def *.sty *.cls  xepersian-logo.pdf tex/xelatex/xepersian
-mv *.ltx *.dtx *.ins source/xelatex/xepersian
-mv *.pdf *.py *.tex README img doc/xelatex/xepersian
+mv *.def *.lua *.sty *.cls  xepersian-logo.pdf tex/latex/xepersian
+mv *.ltx *.dtx *.ins source/latex/xepersian
+mv *.pdf *.py *.tex README img doc/latex/xepersian
 mv persian-tex-text.map persian-tex-text.tec persian-tex-text-nonumbers.map persian-tex-text-nonumbers.tec fonts/misc/xetex/fontmapping/xepersian
-zip -r xepersiantds doc/xelatex/xepersian fonts/misc/xetex/fontmapping/xepersian source/xelatex/xepersian tex/xelatex/xepersian
+zip -r xepersiantds doc/latex/xepersian fonts/misc/xetex/fontmapping/xepersian source/latex/xepersian tex/latex/xepersian
 mv xepersiantds.zip xepersian.tds.zip
-mv doc/xelatex/xepersian/*.pdf doc/xelatex/xepersian/*.py doc/xelatex/xepersian/README  doc/xelatex/xepersian/img source/xelatex/xepersian/*.ltx source/xelatex/xepersian/*.dtx xepersian
+mv doc/latex/xepersian/*.pdf doc/latex/xepersian/*.py doc/latex/xepersian/README  doc/latex/xepersian/img source/latex/xepersian/*.ltx source/latex/xepersian/*.dtx xepersian
 zip -r xepersian xepersian.tds.zip xepersian
 rm -r doc tex source fonts xepersian
 rm *.aux *.hd *.idx *.ilg *.ind *.log *.out *.toc xepersian.tds.zip

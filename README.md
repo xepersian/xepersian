@@ -1,6 +1,6 @@
 # The xepersian Package
 The `xepersian` package provides a convenient interface for typesetting 
-Persian and English documents with LaTeX, using the XeTeX engine.
+Persian and English documents with LaTeX format in XeTeX and LuaTeX engines.
 
 The package includes adaptations for use with many other commonly-used 
 packages.
