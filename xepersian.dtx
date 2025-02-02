@@ -3824,7 +3824,7 @@ Persian typesetting in XeLaTeX]
         }
       \else
         \PackageError{xepersian}{%
-          “shell~escape”~(or~“write18”)~is~not~enabled.~You~need~to~run~“xelatex~--shell-escape”~on~your~TeX~document~for~this~feature~to~work}{}
+          “shell~escape”~(or~“write18”)~is~not~enabled.~You~need~to~run~TeX~with~“-shell-escape”~for~this~feature~to~work}{}
       \fi
     }
 }
@@ -6091,7 +6091,7 @@ indexblock environment may only appear inside frontpage environment.
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{unicode-persianmath}
-  [2026/03/01 v1.2.3 Unicode Persian math]
+  [2026/02/02 v1.2.3 Unicode Persian math]
 \def\new@mathgroup{\alloc@8\mathgroup\chardef\@cclvi}
 \let\newfam\new@mathgroup
 \def\select@group#1#2#3#4{%
@@ -6218,7 +6218,7 @@ indexblock environment may only appear inside frontpage environment.
   The font "#1" does not contain U+#2.
  }
  {
-  Select another font and rerun xelatex.
+  Select another font and rerun TeX.
  }
 \char_set_catcode_ignore:n {32}
 
@@ -6512,7 +6512,7 @@ indexblock environment may only appear inside frontpage environment.
         (\the@choice\space instead of \@choices)}{%
         Questions must all have the same number of proposed answers.%
         \MessageBreak
-        Type X <return> to quit, fix your MCQ (multiple choice question) and rerun XeLaTeX.}}}}
+        Type X <return> to quit, fix your MCQ (multiple choice question) and rerun TeX.}}}}
 \newenvironment{question}[1]{%
   %% \begin{question}
   \begin{minipage}{\textwidth}
