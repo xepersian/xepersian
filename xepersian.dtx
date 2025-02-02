@@ -6181,41 +6181,31 @@ indexblock environment may only appear inside frontpage environment.
 %\int_const:Nn \c_one_int { 1 }
 \NewDocumentCommand \new@mathbf { m } {
  \orig_mathbf:n {
-   \int_step_inline:nnnn { `0 } { \c_one_int } { `9 } {
-     \mathcode ##1 = \numexpr "100 * \sympersianoperatorsbf + ##1 \relax
-   }
+   \SetPersianMathDigitsCode{\mathord}{persianoperatorsbf}
    #1
  }
 }
 \NewDocumentCommand \new@mathit { m } {
  \orig_mathit:n {
-   \int_step_inline:nnnn { `0 } { \c_one_int } { `9 } {
-     \mathcode ##1 = \numexpr "100 * \sympersianoperatorsit + ##1 \relax
-   }
+   \SetPersianMathDigitsCode{\mathord}{persianoperatorsit}
    #1
  }
 }
 \NewDocumentCommand \new@mathrm { m } {
  \orig_mathrm:n {
-   \int_step_inline:nnnn { `0 } { \c_one_int } { `9 } {
-     \mathcode ##1 = \numexpr "100 * \sympersianoperators + ##1 \relax
-   }
+   \SetPersianMathDigitsCode{\mathord}{persianoperators}
    #1
  }
 }
 \NewDocumentCommand \new@mathsf{ m } {
  \orig_mathsf:n {
-   \int_step_inline:nnnn { `0 } { \c_one_int } { `9 } {
-     \mathcode ##1 = \numexpr "100 * \sympersianoperatorssf + ##1 \relax
-   }
+   \SetPersianMathDigitsCode{\mathord}{persianoperatorssf}
    #1
  }
 }
 \NewDocumentCommand \new@mathtt{ m } {
  \orig_mathtt:n {
-   \int_step_inline:nnnn { `0 } { \c_one_int } { `9 } {
-     \mathcode ##1 = \numexpr "100 * \sympersianoperatorstt + ##1 \relax
-   }
+   \SetPersianMathDigitsCode{\mathord}{persianoperatorstt}
    #1
  }
 }
@@ -6276,6 +6266,20 @@ indexblock environment may only appear inside frontpage environment.
       06F9 , 066A , 066B
     } { #1 }                         
  }
+ 
+\NewDocumentCommand \SetPersianMathDigitsCode { m m }
+  {
+    \SetMathCode{`0}{#1}{#2}{`۰}
+    \SetMathCode{`1}{#1}{#2}{`۱}
+    \SetMathCode{`2}{#1}{#2}{`۲}
+    \SetMathCode{`3}{#1}{#2}{`۳}
+    \SetMathCode{`4}{#1}{#2}{`۴}
+    \SetMathCode{`5}{#1}{#2}{`۵}
+    \SetMathCode{`6}{#1}{#2}{`۶}
+    \SetMathCode{`7}{#1}{#2}{`۷}
+    \SetMathCode{`8}{#1}{#2}{`۸}
+    \SetMathCode{`9}{#1}{#2}{`۹}
+  }
 
 \DeclareDocumentCommand \setmathdigitfont { O{} m O{} }
   {
@@ -6284,7 +6288,7 @@ indexblock environment may only appear inside frontpage environment.
 \cs_new:Nn \__xepersian_main_setmathdigitfont:nn
  {
   \let\glb@currsize\relax
-  \fontspec_set_family:Nnn \g__xepersian_mathdigitsfamily_tl {Ligatures=PersianTeX,#1} {#2}
+  \fontspec_set_family:Nnn \g__xepersian_mathdigitsfamily_tl {#1} {#2}
   \__xepersian_setmathdigitfont_hook:nn {#1} {#2}
     \xepersian@PackageInfo{Defining the default Persian math digits font as '#2'}
   \DeclareSymbolFont{persianoperators}   {\g_fontspec_encoding_tl}{\g__xepersian_mathdigitsfamily_tl} {m}{n}
@@ -6292,21 +6296,13 @@ indexblock environment may only appear inside frontpage environment.
   \DeclareSymbolFont{persianoperatorsit}{\g_fontspec_encoding_tl}{\g__xepersian_mathdigitsfamily_tl}{m}{it}
   \__xepersian_mathdigitspec_char_not_exist_error:n { #2 }
   \def\persianmathdigits{%
-  \SetMathCode{`0}{\mathalpha}{persianoperators}{`0}
-  \SetMathCode{`1}{\mathalpha}{persianoperators}{`1}
-  \SetMathCode{`2}{\mathalpha}{persianoperators}{`2}
-  \SetMathCode{`3}{\mathalpha}{persianoperators}{`3}
-  \SetMathCode{`4}{\mathalpha}{persianoperators}{`4}
-  \SetMathCode{`5}{\mathalpha}{persianoperators}{`5}
-  \SetMathCode{`6}{\mathalpha}{persianoperators}{`6}
-  \SetMathCode{`7}{\mathalpha}{persianoperators}{`7}
-  \SetMathCode{`8}{\mathalpha}{persianoperators}{`8}
-  \SetMathCode{`9}{\mathalpha}{persianoperators}{`9}
-  \SetMathCode{`\%}{\mathord}{persianoperators}{`٪}
-  \SetMathCharDef{\persiandecimalseparator}{\mathord}{persianoperators}{"066B}
-  \tl_set_eq:NN \mathbf \new@mathbf
-  \tl_set_eq:NN \mathit \new@mathit
-  \tl_set_eq:NN \mathrm \new@mathrm}
+    \SetPersianMathDigitsCode{\mathalpha}{persianoperators}
+    \SetMathCode{`\%}{\mathord}{persianoperators}{`٪}
+    \SetMathCharDef{\persiandecimalseparator}{\mathord}{persianoperators}{`٫}
+    \tl_set_eq:NN \mathbf \new@mathbf
+    \tl_set_eq:NN \mathit \new@mathit
+    \tl_set_eq:NN \mathrm \new@mathrm
+  }
  }
 
 \cs_set_eq:NN \__xepersian_setmathdigitfont_hook:nn     \use_none:nn
@@ -6317,7 +6313,7 @@ indexblock environment may only appear inside frontpage environment.
   }
 \cs_new:Nn \__xepersian_main_setmathsfdigitfont:nn
  {
-  \fontspec_set_family:Nnn \g__xepersian_mathsfdigitfamily_tl {Ligatures=PersianTeX,#1} {#2}
+  \fontspec_set_family:Nnn \g__xepersian_mathsfdigitfamily_tl {#1} {#2}
   \__xepersian_setmathsfdigitfont_hook:nn {#1} {#2}
       \DeclareSymbolFont{persianoperatorssf}{\g_fontspec_encoding_tl}{\g__xepersian_mathsfdigitfamily_tl}{m}{n}
       \__xepersian_mathdigitspec_char_not_exist_error:n { #2 }
@@ -6332,7 +6328,7 @@ indexblock environment may only appear inside frontpage environment.
   }
 \cs_new:Nn \__xepersian_main_setmathttdigitfont:nn
  {
-  \fontspec_set_family:Nnn \g__xepersian_mathttdigitfamily_tl {Ligatures=PersianTeX,#1} {#2}
+  \fontspec_set_family:Nnn \g__xepersian_mathttdigitfamily_tl {#1} {#2}
   \__xepersian_setmathttdigitfont_hook:nn {#1} {#2}
       \DeclareSymbolFont{persianoperatorstt}{\g_fontspec_encoding_tl}{\g__xepersian_mathttdigitfamily_tl}{m}{n}
       \__xepersian_mathdigitspec_char_not_exist_error:n { #2 }
@@ -6437,9 +6433,7 @@ indexblock environment may only appear inside frontpage environment.
 }
 
 \NewDocumentCommand \SwitchToPersianMathDigits {  } {
-  \int_step_inline:nnnn { `0 } { \c_one_int } { `9 } {
-    \SetMathCode{##1}{\mathalpha}{persianoperators}{##1}
-  }
+  \SetPersianMathDigitsCode{\mathalpha}{persianoperators}
   \SetMathCode{`\%}{\mathord}{persianoperators}{`٪}
   \tl_set_eq:NN \MathDecimalSeparator \orig_MathDecimalSeparator
   \tl_set_eq:NN \mathbf \new@mathbf
