@@ -6091,7 +6091,7 @@ indexblock environment may only appear inside frontpage environment.
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{unicode-persianmath}
-  [2026/02/02 v1.2.3 Unicode Persian math]
+  [2026/02/04 v1.2.4 Unicode Persian math]
 \def\new@mathgroup{\alloc@8\mathgroup\chardef\@cclvi}
 \let\newfam\new@mathgroup
 \def\select@group#1#2#3#4{%
@@ -6180,31 +6180,31 @@ indexblock environment may only appear inside frontpage environment.
 %\int_const:Nn \c_one_int { 1 }
 \NewDocumentCommand \new@mathbf { m } {
  \orig_mathbf:n {
-   \SetPersianMathDigitsCode{\mathord}{persianoperatorsbf}
+   \SetPersianMathDigitsCode[bf]
    #1
  }
 }
 \NewDocumentCommand \new@mathit { m } {
  \orig_mathit:n {
-   \SetPersianMathDigitsCode{\mathord}{persianoperatorsit}
+   \SetPersianMathDigitsCode[it]
    #1
  }
 }
 \NewDocumentCommand \new@mathrm { m } {
  \orig_mathrm:n {
-   \SetPersianMathDigitsCode{\mathord}{persianoperators}
+   \SetPersianMathDigitsCode
    #1
  }
 }
 \NewDocumentCommand \new@mathsf{ m } {
  \orig_mathsf:n {
-   \SetPersianMathDigitsCode{\mathord}{persianoperatorssf}
+   \SetPersianMathDigitsCode[sf]
    #1
  }
 }
 \NewDocumentCommand \new@mathtt{ m } {
  \orig_mathtt:n {
-   \SetPersianMathDigitsCode{\mathord}{persianoperatorstt}
+   \SetPersianMathDigitsCode[tt]
    #1
  }
 }
@@ -6266,18 +6266,18 @@ indexblock environment may only appear inside frontpage environment.
     } { #1 }                         
  }
  
-\NewDocumentCommand \SetPersianMathDigitsCode { m m }
+\NewDocumentCommand \SetPersianMathDigitsCode { O{} }
   {
-    \SetMathCode{`0}{#1}{#2}{`۰}
-    \SetMathCode{`1}{#1}{#2}{`۱}
-    \SetMathCode{`2}{#1}{#2}{`۲}
-    \SetMathCode{`3}{#1}{#2}{`۳}
-    \SetMathCode{`4}{#1}{#2}{`۴}
-    \SetMathCode{`5}{#1}{#2}{`۵}
-    \SetMathCode{`6}{#1}{#2}{`۶}
-    \SetMathCode{`7}{#1}{#2}{`۷}
-    \SetMathCode{`8}{#1}{#2}{`۸}
-    \SetMathCode{`9}{#1}{#2}{`۹}
+    \SetMathCode{`0}{\mathord}{persianoperators#1}{`۰}
+    \SetMathCode{`1}{\mathord}{persianoperators#1}{`۱}
+    \SetMathCode{`2}{\mathord}{persianoperators#1}{`۲}
+    \SetMathCode{`3}{\mathord}{persianoperators#1}{`۳}
+    \SetMathCode{`4}{\mathord}{persianoperators#1}{`۴}
+    \SetMathCode{`5}{\mathord}{persianoperators#1}{`۵}
+    \SetMathCode{`6}{\mathord}{persianoperators#1}{`۶}
+    \SetMathCode{`7}{\mathord}{persianoperators#1}{`۷}
+    \SetMathCode{`8}{\mathord}{persianoperators#1}{`۸}
+    \SetMathCode{`9}{\mathord}{persianoperators#1}{`۹}
   }
 
 \DeclareDocumentCommand \setmathdigitfont { O{} m O{} }
@@ -6295,7 +6295,7 @@ indexblock environment may only appear inside frontpage environment.
   \DeclareSymbolFont{persianoperatorsit}{\g_fontspec_encoding_tl}{\g__xepersian_mathdigitsfamily_tl}{m}{it}
   \__xepersian_mathdigitspec_char_not_exist_error:n { #2 }
   \def\persianmathdigits{%
-    \SetPersianMathDigitsCode{\mathalpha}{persianoperators}
+    \SetPersianMathDigitsCode
     \SetMathCode{`\%}{\mathord}{persianoperators}{`٪}
     \SetMathCharDef{\persiandecimalseparator}{\mathord}{persianoperators}{`٫}
     \tl_set_eq:NN \mathbf \new@mathbf
@@ -6420,7 +6420,7 @@ indexblock environment may only appear inside frontpage environment.
 
 \NewDocumentCommand \SwitchToDefaultMathDigits {  } {
   \int_step_inline:nnnn { `0 } { \c_one_int } { `9 } {
-    \SetMathCode{##1}{\mathalpha}{operators}{##1}
+    \SetMathCode{##1}{\mathord}{operators}{##1}
   }
   \SetMathCode{`\%}{\mathord}{operators}{`\%}
   \tl_set_eq:NN \MathDecimalSeparator \DefaultMathDecimalSeparator
@@ -6432,7 +6432,7 @@ indexblock environment may only appear inside frontpage environment.
 }
 
 \NewDocumentCommand \SwitchToPersianMathDigits {  } {
-  \SetPersianMathDigitsCode{\mathalpha}{persianoperators}
+  \SetPersianMathDigitsCode
   \SetMathCode{`\%}{\mathord}{persianoperators}{`٪}
   \tl_set_eq:NN \MathDecimalSeparator \orig_MathDecimalSeparator
   \tl_set_eq:NN \mathbf \new@mathbf
