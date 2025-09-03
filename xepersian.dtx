@@ -5,7 +5,7 @@
 %<*readme>
 ____________________
 The XePersian package
-v26.3.1
+v25.09.03
 
 The xepersian package provides a convenient interface for 
 typesetting Persian and English texts with LaTeX format in XeTeX 
@@ -31,7 +31,7 @@ also appear in the Discussions space under the Announcements
 category.
   
   
-Current version release date: 2026/03/01
+Current version release date: 2025/09/03
 ___________________________________________
 Vafa Khalighi
 
@@ -173,7 +173,7 @@ by Vafa Khalighi.
 \documentclass{ltxdoc}
 \input{xepersian-doc-preamble.ltx}
 \hypersetup{%
-  pdftitle={Source documentation for version 26.3.1 of the XePersian
+  pdftitle={Source documentation for version 25.09.03 of the XePersian
                 package}%
 }
 \EnableCrossrefs
@@ -192,7 +192,7 @@ by Vafa Khalighi.
 % \GetFileInfo{\jobname.dtx}
 % \title{\textcolor{xepersianblue}{\Huge The \textsf{\XePersian} \textit{Package}}\\
 %\LARGE Persian for {\LaTeXe} in {\XeTeX} and Lua{\TeX} engines\\[5pt]
-%\large Source documentation for \textcolor{xepersianblue}{version 26.3.1}}
+%\large Source documentation for \textcolor{xepersianblue}{version 25.09.03}}
 % \author{Vafa Khalighi\thanks{Thanks to the bidi-tex GitHub organization consisted of David Carlisle and other members of the  {\LaTeX} team for maintaining the package in the period 2018--2020.}}
 %\setcounter{page}{0}
 %\thispagestyle{empty}
@@ -202,7 +202,7 @@ by Vafa Khalighi.
 %\textcolor{xepersianblue}{\Huge The \textsf{\XePersian} \textit{Package}}
 %
 %\Large
-%Source documentation for \textcolor{xepersianblue}{version 26.3.1}}
+%Source documentation for \textcolor{xepersianblue}{version 25.09.03}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -250,7 +250,7 @@ by Vafa Khalighi.
 %\iffalse
 %<*table>
 %\fi
-%% \CheckSum{10853}
+%% \CheckSum{10823}
 %% \CharacterTable
 %%  {Upper-case    \A\B\C\D\E\F\G\H\I\J\K\L\M\N\O\P\Q\R\S\T\U\V\W\X\Y\Z
 %%   Lower-case    \a\b\c\d\e\f\g\h\i\j\k\l\m\n\o\p\q\r\s\t\u\v\w\x\y\z
@@ -3050,7 +3050,10 @@ by Vafa Khalighi.
 %\fi
 % \section{File \texttt{url-xetex-xepersian.def}}
 %    \begin{macrocode}
-\ProvidesFile{url-xetex-xepersian.def}[2022/02/18 v0.1 xepersian adaptations for url package for XeTeX engine]
+\ProvidesFile{url-xetex-xepersian.def}[2025/09/03 v0.2 xepersian adaptations for url package for XeTeX engine]
+
+\bidi@preto\Url@FormatString\DefaultInlineMathDigits
+
 \begingroup
  \lccode`+=`\% \lccode`\~=`\%
   \lowercase {\long\gdef\Url@actpercent{\Url@Edit\Url@String{+}{~}%
@@ -3739,10 +3742,10 @@ otfregister {
 % \section{File \texttt{xepersian.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\xepersian@version{26.3.1}
-\def\xepersiandate{2026/03/01}
-\def\xepersian@releasename{Persian Gate}
-\def\xepersian@persian@@releasename{دربند پارس}
+\def\xepersian@version{25.09.03}
+\def\xepersiandate{2025/09/03}
+\def\xepersian@releasename{Iran}
+\def\xepersian@persian@@releasename{ایران}
 \newcommand*{\xepersianreleasename}{\if@RTL\xepersian@persian@@releasename\else\xepersian@releasename\fi}
 \ProvidesPackage{xepersian}[\xepersiandate\space v\xepersian@version\space (Release \xepersian@releasename)\space
 Persian typesetting in XeLaTeX]
@@ -4743,7 +4746,7 @@ English documents with LaTeX format in XeTeX and LuaTeX engines.^^J%
 
 \newcommand*{\@xepersian@pdfcustomproperties}{%
   This is the xepersian package, Version \xepersian@version\space (Release \xepersian@releasename),
-  Released March 1, 2026. 
+  Released September 3, 2025. 
 }
 
 \newcommand\twocolumnstableofcontents{%
@@ -6091,7 +6094,7 @@ indexblock environment may only appear inside frontpage environment.
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesPackage{unicode-persianmath}
-  [2026/02/02 v1.2.3 Unicode Persian math]
+  [2025/09/03 v1.2.4 Unicode Persian math]
 \def\new@mathgroup{\alloc@8\mathgroup\chardef\@cclvi}
 \let\newfam\new@mathgroup
 \def\select@group#1#2#3#4{%
@@ -6178,6 +6181,29 @@ indexblock environment may only appear inside frontpage environment.
 \cs_new_eq:NN \orig_mathsf:n \mathsf
 \cs_new_eq:NN \orig_mathtt:n \mathtt
 %\int_const:Nn \c_one_int { 1 }
+
+\RenewDocumentCommand \mathsf{ m } {
+ \orig_mathsf:n {
+   \int_step_inline:nnnn { `0 } { \c_one_int } { `9 } {
+    \SetMathCode{##1}{\mathalpha}{operators}{##1}
+  }
+  \SetMathCode{`\%}{\mathord}{operators}{`\%}
+  \tl_set_eq:NN \MathDecimalSeparator \DefaultMathDecimalSeparator
+   #1
+ }
+}
+\RenewDocumentCommand \mathtt{ m } {
+ \orig_mathtt:n {
+   \int_step_inline:nnnn { `0 } { \c_one_int } { `9 } {
+    \SetMathCode{##1}{\mathalpha}{operators}{##1}
+  }
+  \SetMathCode{`\%}{\mathord}{operators}{`\%}
+  \tl_set_eq:NN \MathDecimalSeparator \DefaultMathDecimalSeparator
+   #1
+ }
+}
+
+
 \NewDocumentCommand \new@mathbf { m } {
  \orig_mathbf:n {
    \SetPersianMathDigitsCode{\mathord}{persianoperatorsbf}
