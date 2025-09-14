@@ -38,7 +38,8 @@ assignees: vkhalighi
 \usepackage[%
     % Any xepersian package option goes here
 ]{xepersian}
-\settextfont{IRXLotus}
+
+\settextfont{<fontname>}
 
   % Any preamble code goes here
   
