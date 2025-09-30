@@ -5,7 +5,7 @@
 %<*readme>
 ____________________
 The XePersian package
-v25.09.08
+v26.02.22
 
 The xepersian package provides a convenient interface for 
 typesetting Persian and English texts with LaTeX format in XeTeX 
@@ -22,11 +22,11 @@ In doing so, please always explain your issue well enough, and always
 include a minimal working example showing the issue.
   
   
-Current version release date: 2025/09/08
+Current version release date: 2026/02/22
 ___________________________________________
 Vafa Khalighi
 
-Copyright (c) Vafa Khalighi 2008--2025
+Copyright (c) Vafa Khalighi 2008--2026
 Copyright (c) bidi-tex GitHub Organization 2018--2020
 
 Distributed under the LaTeX Project Public License
@@ -50,7 +50,7 @@ by Vafa Khalighi.
   __________________________________________________
   Vafa Khalighi
 
-  Copyright (c) 2008--2025  Vafa Khalighi 
+  Copyright (c) 2008--2026  Vafa Khalighi 
   Copyright (c) 2018--2020 bidi-tex GitHub Organization
 
   It may be distributed and/or modified under the LaTeX Project Public License,
@@ -164,7 +164,7 @@ by Vafa Khalighi.
 \documentclass{ltxdoc}
 \input{xepersian-doc-preamble.ltx}
 \hypersetup{%
-  pdftitle={Source documentation for version 25.09.08 of the XePersian
+  pdftitle={Source documentation for version 26.02.22 of the XePersian
                 package}%
 }
 \EnableCrossrefs
@@ -183,7 +183,7 @@ by Vafa Khalighi.
 % \GetFileInfo{\jobname.dtx}
 % \title{\textcolor{xepersianblue}{\Huge The \textsf{\XePersian} \textit{Package}}\\
 %\LARGE Persian for {\LaTeXe} in {\XeTeX} and Lua{\TeX} engines\\[5pt]
-%\large Source documentation for \textcolor{xepersianblue}{version 25.09.08}}
+%\large Source documentation for \textcolor{xepersianblue}{version 26.02.22}}
 % \author{Vafa Khalighi\thanks{Thanks to the bidi-tex GitHub organization consisted of David Carlisle and other members of the  {\LaTeX} team for maintaining the package in the period 2018--2020.}}
 %\setcounter{page}{0}
 %\thispagestyle{empty}
@@ -193,7 +193,7 @@ by Vafa Khalighi.
 %\textcolor{xepersianblue}{\Huge The \textsf{\XePersian} \textit{Package}}
 %
 %\Large
-%Source documentation for \textcolor{xepersianblue}{version 25.09.08}}
+%Source documentation for \textcolor{xepersianblue}{version 26.02.22}}
 %
 %\vskip 0pt plus 3fill
 %\textit{\large to my Master, \textbf{Ferdowsi The Great}}
@@ -214,7 +214,7 @@ by Vafa Khalighi.
 %
 %\vskip 0pt plus 3fill
 %
-%Copyright (c) 2008--2025 Vafa Khalighi
+%Copyright (c) 2008--2026 Vafa Khalighi
 %
 %Copyright (c) 2018--2020 bidi-tex GitHub Organization
 %
@@ -3721,8 +3721,8 @@ otfregister {
 % \section{File \texttt{xepersian.sty}}
 %    \begin{macrocode}
 \NeedsTeXFormat{LaTeX2e}
-\def\xepersian@version{25.09.08}
-\def\xepersiandate{2025/09/08}
+\def\xepersian@version{26.02.22}
+\def\xepersiandate{2026/02/22}
 \def\xepersian@releasename{Iran}
 \def\xepersian@persian@@releasename{ایران}
 \newcommand*{\xepersianreleasename}{\if@RTL\xepersian@persian@@releasename\else\xepersian@releasename\fi}
@@ -3737,9 +3737,9 @@ Persian typesetting in XeLaTeX]
 \msg_new:nnn {xepersian} {cannot-use-engine}
   {
     Oops!~can~not~use~\c_sys_engine_str.\\\\
-    The~xepersian~package~requires~XeTeX.
+    The~xepersian~package~requires~either~LuaTeX~or~XeTeX.
   }
- \sys_if_engine_xetex:F
+ \sys_if_engine_opentype:F
   {
     \msg_fatal:nn {xepersian} {cannot-use-engine}
   } 
@@ -3898,7 +3898,7 @@ Persian typesetting in XeLaTeX]
 * Description: A convenient interface for typesetting Persian and^^J% 
 English documents with LaTeX format in XeTeX and LuaTeX engines.^^J%
 * ^^J%
-* Copyright (c) 2008--2025 Vafa Khalighi^^J%
+* Copyright (c) 2008--2026 Vafa Khalighi^^J%
 * Copyright (c) 2018--2020 bidi-tex GitHub Organization^^J%
 * ^^J%
 * v\xepersian@version\space (Release \xepersian@releasename), \xepersiandate^^J%
@@ -4723,7 +4723,7 @@ English documents with LaTeX format in XeTeX and LuaTeX engines.^^J%
 
 \newcommand*{\@xepersian@pdfcustomproperties}{%
   This is the xepersian package, Version \xepersian@version\space (Release \xepersian@releasename),
-  Released September 8, 2025. 
+  Released February 22, 2026. 
 }
 
 \newcommand\twocolumnstableofcontents{%
