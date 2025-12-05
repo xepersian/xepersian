@@ -7,6 +7,9 @@ packages.
 
 The name `xepersian`is derived from the words **_experience_** and **_persian_** and captures my philosophy of writing the package for **_the best Persian typesetting experience in TeX_**.
 
+## Note
+This GitHub repository should only be used for reporting issues; the code is developed privately off GitHub on my local computer.
+
 The official versions of the package are released on [CTAN](https://ctan.org/pkg/xepersian).
 
 ## Using the Package
